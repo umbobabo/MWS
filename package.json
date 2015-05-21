@@ -1,0 +1,14 @@
+{
+  "name": "MBS",
+  "private": true,
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "dependencies": {
+    "express": "^4.10.6",
+    "express-handlebars": "^1.1.0",
+    "express-logger": "0.0.3",
+    "fs": "0.0.2"
+  }
+}
