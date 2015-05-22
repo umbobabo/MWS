@@ -1,0 +1,18 @@
+<div class="main-container">
+  <div class="close-btn">X</div>
+  <div class="article-container"></div>
+  <div class="article-reveal-container">
+    <ul>
+      {{#each tile}}
+      <li class="artical-reveal-tile {{title}} {{type}}">
+        <div class="tile-content">
+          <h2 class="section">{{section}}</h2>
+          <h2 class="title">{{title}}</h2>
+          <h2 class="rubrik">{{rubrik}}</h2>
+          <img class="image" src="{{image}}">
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>

@@ -117,7 +117,7 @@ var data = {
 
 var availableViews = fs.readdirSync('views');
 // Serve static bundles
-app.use('/bundles', express.static(__dirname + '/bundles'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 // TODO Implements useful log management
 app.use(logger({path: "logs/logs.txt"}));
 
@@ -125,10 +125,17 @@ hbs =  exphbs.create();
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-app.get('/TheWorldIf/:article', function (req, res) {
+app.get('/TheWorldIf/:article?', function (req, res) {
+  var article = req.params.article || null;
+  var storytilesData = JSON.parse(fs.readFileSync('data/theWorldIf/storytiles.json', 'utf8'));
+  var footerData = JSON.parse(fs.readFileSync('data/footer.json', 'utf8'));
+  hbs.partialsDir = ['bower_components'];
   res.render('theWorldIfBody', {
       layout: 'theWorldIf',
-      article: article
+      article: article,
+      // TODO Review this part, sucks!
+      tile: storytilesData['ec-storytilesreveal-0'].tile,
+      "mnv-cmp-footer": footerData['mnv-cmp-footer']
     });
 });
 

@@ -1,0 +1,42 @@
+{
+  "name": "Footer",
+  "devDependencies": {
+    "handlebars": "~3.0.3"
+  },
+  "homepage": "https://github.com/umbobabo/mnv-cmp-footer",
+  "authors": [
+    "umbobabo <umbertobabini@economist.com>"
+  ],
+  "description": "Basic footer used for The Economist website",
+  "main": [
+    "./dist/js/init.min.js"
+  ],
+  "license": "MIT",
+  "directory": "/components",
+  "ignore": [
+    "bower_components/",
+    "css/",
+    "data/",
+    "js/",
+    "node_modules/",
+    "partials/",
+    "sites/",
+    "tmp/",
+    "views/",
+    ".gitignore",
+    "bower.json",
+    "config.json",
+    "Gruntfile.js",
+    "minerva-ws.js",
+    "package.json"
+  ],
+  "_release": "281da8ace4",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "281da8ace4d3780cf4dd1ef0a4db49585cf50657"
+  },
+  "_source": "git://github.com/umbobabo/mnv-cmp-footer.git",
+  "_target": "*",
+  "_originalSource": "mnv-cmp-footer"
+}

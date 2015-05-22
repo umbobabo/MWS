@@ -1,0 +1,3 @@
+[submodule "mnv/mnv-cmp-storytiles-reveal"]
+	path = mnv/mnv-cmp-storytiles-reveal
+	url = https://github.com/umbobabo/mnv-cmp-storytiles-reveal.git
