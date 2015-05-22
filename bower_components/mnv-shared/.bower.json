@@ -13,14 +13,13 @@
     "bower.json",
     "Gruntfile.js"
   ],
-  "_release": "50ac140efa",
+  "_release": "8748dfb9b1",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "50ac140efa3cf74f7bb72ea4bdf503721b2506d0"
+    "commit": "8748dfb9b1e4ec58c63a87ecaf7b8131e458bba0"
   },
   "_source": "git://github.com/umbobabo/mnv-shared.git",
   "_target": "*",
-  "_originalSource": "mnv-shared",
-  "_direct": true
+  "_originalSource": "mnv-shared"
 }

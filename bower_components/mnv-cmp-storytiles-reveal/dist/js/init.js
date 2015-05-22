@@ -6,14 +6,38 @@ ecStoryTilesReveal.prototype = new Widget();
 
 /* Script below just for handlebars example */
 $(document).ready(function(){
+
+
+
+
+
   $("[data-mnv='ecStoryTilesReveal']")
     .on('dataProviding', function(){
+
+
+    //conditional helper function;
+    Handlebars.registerHelper("ifvalue", function(conditional, options) {
+    if (conditional == options.hash.equals) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+  });
+
+
       //Retrive data from the data attribute
       var widget = $.data(this, 'widget');
       widget.log('Received data');
       var tmp = Handlebars.templates['ec-storytilesreveal'];
       $(this).html(tmp(widget.data));
     });
+
+
+
+$(document).ready(function(){
+
+
+
 
 
 
@@ -125,21 +149,6 @@ $(document).ready(function(){
     });
 
 
-
- // runAnim = function(){
- //    articleActive = !articleActive;
- //    if (articleActive === false){
- //      revealContainer[0].style.visibility = 'visible';
- //    }
- //    // for (var i = 0; i <= (tile.length-1); i++) {
- //    //   tile[i].classList.toggle('animate');
- //    // };
- // }
-
-
-
-
-
   btn[0].addEventListener("click", function () {
 
     this.classList.toggle('inactive');
@@ -162,7 +171,13 @@ $(document).ready(function(){
 
     articleActive = !articleActive;
 
+
+
   });
+});
+
+
+
 
 
 
