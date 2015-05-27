@@ -46,7 +46,7 @@ app.use(bodyParser.json())
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-app.get('/TheWorldIf/:article?', theWorldif.storytiles );
+app.get('/' + theWorldif.conf.homeURL + '/:article?', theWorldif.storytiles );
 // Use this routing just to bypass CORS ISSUE if needed
 // Remove it with CORS enabled
 app.get('/article/:nid', function (req, res) {

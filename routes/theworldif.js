@@ -3,9 +3,10 @@ var fs = require('fs'),
     util = require('util');
 
 exports.storytiles = function (req, res) {
-  var article = req.params.article || null;
+  var articleID = req.params.article || null;
+  console.log('Article' + articleID);
   // Mockup data
-  var footerData = JSON.parse(fs.readFileSync('data/footer.json', 'utf8'));
+  //var footerData = JSON.parse(fs.readFileSync('data/footer.json', 'utf8'));
   // Use local file or remote service
   if(false===true){
     // Local version of articles
@@ -14,10 +15,8 @@ exports.storytiles = function (req, res) {
       outputPage(data['ec-storytilesreveal-0'].tile);
     });
   } else {
-    var host = "local.demo.economist.com";
-    //var host = "www.economist.com";
 
-    http.get("http://" + host + "/jsonify/node/21646922", function(res) {
+    http.get("http://" + WIFconf.dataHost + "/jsonify/node/21646922", function(res) {
       // Buffer the body entirely for processing as a whole.
       var bodyChunks = [];
       res.on('data', function(chunk) {
@@ -40,27 +39,52 @@ exports.storytiles = function (req, res) {
             rubrik: data.field_hub_headline[i].value,
             image: img,
             type : 'tile-' + data.field_hub_columns[i].value,
-            nid: data.field_hub_article[i].nid
+            nid: data.field_hub_article[i].nid,
+            url: '/' + WIFconf.homeURL + '/' + data.field_hub_article[i].nid,
+            animate: (articleID!==null) ? 'animate' : ''
           };
           articles.push(article);
         };
-        outputPage(articles);
+        if(articleID!==null){
+          getArticle(articleID, articles);
+        } else {
+          outputPage(articles, articleID);
+        }
       })
     }).on('error', function(e) {
       console.log("Got error: " + e.message);
     });
   }
 
-  function outputPage(data){
-    var articles = data;
+  function getArticle(articleID, articles){
+    http.get("http://" + WIFconf.dataHost + "/jsonify/node/" + articleID, function(res) {
+        // Buffer the body entirely for processing as a whole.
+        var bodyChunks = [];
+        res.on('data', function(chunk) {
+          // You can process streamed parts here...
+          bodyChunks.push(chunk);
+        }).on('end', function() {
+          var body = Buffer.concat(bodyChunks);
+          var data = JSON.parse(body);
+          console.log('Article data ' + data);
+          outputPage(articles, data);
+        })
+      }).on('error', function(e) {
+        console.log("Got error: " + e.message);
+      });
+  }
+
+  function outputPage(data, article){
+    var tiles = data, article;
     // 'bower_components',
     hbs.partialsDir = ['mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
     //hbs.partialsDir = ['bower_components'];
     res.render('theWorldIfBody', {
         layout: 'theWorldIf',
         article: article,
-        tile: articles,
-        "mnv-cmp-footer": footerData['mnv-cmp-footer'],
+        tile: tiles,
+        className: (article!==null) ? 'article' : 'landing',
+        //"mnv-cmp-footer": footerData['mnv-cmp-footer'],
         helpers: {
           ifvalue: function(conditional, options) {
             if (conditional == options.hash.equals) {
@@ -73,3 +97,11 @@ exports.storytiles = function (req, res) {
       });
   }
 }
+
+var WIFconf = {
+  homeURL: 'TheWorldIf',
+  dataHost: "local.demo.economist.com"
+    //var host = "www.economist.com";
+};
+
+exports.conf = WIFconf;
