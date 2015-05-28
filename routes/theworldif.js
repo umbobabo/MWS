@@ -77,7 +77,7 @@ exports.storytiles = function (req, res) {
   function outputPage(data, article){
     var tiles = data, article;
     // 'bower_components',
-    hbs.partialsDir = ['mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
+    hbs.partialsDir = ['mnv/mnv-cmp-masthead/js/tpl/handlebars', 'mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
     //hbs.partialsDir = ['bower_components'];
     res.render('theWorldIfBody', {
         layout: 'theWorldIf',
@@ -85,6 +85,10 @@ exports.storytiles = function (req, res) {
         tile: tiles,
         className: (article!==null) ? 'article' : 'landing',
         //"mnv-cmp-footer": footerData['mnv-cmp-footer'],
+        "masthead":{
+            "title": "The World If",
+            "subtitle": "This is a subtitle"
+        },
         helpers: {
           ifvalue: function(conditional, options) {
             if (conditional == options.hash.equals) {

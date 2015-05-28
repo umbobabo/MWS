@@ -1,0 +1,44 @@
+{
+  "name": "Masthead",
+  "devDependencies": {
+    "handlebars": "~3.0.3",
+    "mnv-shared": "*"
+  },
+  "homepage": "https://github.com/umbobabo/mnv-cmp-masthead",
+  "authors": [
+    "umbobabo <umbertobabini@economist.com>"
+  ],
+  "description": "Basic masthead used for The Economist website",
+  "main": [
+    "./dist/js/init.min.js"
+  ],
+  "license": "MIT",
+  "directory": "/components",
+  "ignore": [
+    "bower_components/",
+    "css/",
+    "data/",
+    "js/",
+    "node_modules/",
+    "partials/",
+    "sites/",
+    "tmp/",
+    "views/",
+    ".gitignore",
+    "bower.json",
+    "config.json",
+    "Gruntfile.js",
+    "minerva-ws.js",
+    "package.json"
+  ],
+  "_release": "43c41828bf",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "43c41828bf45caea4210268c2be79aecc4050bd9"
+  },
+  "_source": "git://github.com/umbobabo/mnv-cmp-masthead.git",
+  "_target": "*",
+  "_originalSource": "mnv-cmp-masthead",
+  "_direct": true
+}

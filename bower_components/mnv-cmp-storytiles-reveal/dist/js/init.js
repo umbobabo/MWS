@@ -77,21 +77,21 @@ $(document).ready(function(){
         btn[0].style.visibility = 'visible';
         btn[0].classList.remove('inactive');
         resetTransitionDelay();
-        launchiFrame();
+        //launchiFrame();
       }
     }
   }
 
 
-  function launchiFrame() {
-    if(launch === true){
+  // function launchiFrame() {
+  //   if(launch === true){
 
-       $( ".article-container" ).append('<div id="iframe" class="iframe"><iframe src="http://www.economist.com/democracy" width="100%" height="5000px" scrolling="no" frameborder="0"></iframe></div>');
-       console.log(launch);
-       console.log('launching iFrame');
-     }
-     launch = false;
-  }
+  //      $( ".article-container" ).append('<div id="iframe" class="iframe"><iframe src="http://www.economist.com/democracy" width="100%" height="5000px" scrolling="no" frameborder="0"></iframe></div>');
+  //      console.log(launch);
+  //      console.log('launching iFrame');
+  //    }
+  //    launch = false;
+  // }
 
 
 
@@ -119,11 +119,10 @@ $(document).ready(function(){
 
       articleActive = !articleActive;
 
-       if (articleActive === false){
-      //revealContainer[0].style.visibility = 'visible';
-      revealContainer[0].classList.add('active');
-    }
-
+      if (articleActive === false){
+        //revealContainer[0].style.visibility = 'visible';
+        revealContainer[0].classList.add('active');
+      }
 
       indexVal = $( ".artical-reveal-tile" ).index( $(this) );
 
