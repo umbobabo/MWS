@@ -12,8 +12,7 @@ hbs =  exphbs.create();
 
 conf = {
   "app": {
-    port: 3100,
-    mediaHost: 'local.demo.economist.com'
+    port: 3100
   }
 };
 // TODO, enforce the use of existing view to prevent crash if a view is not present
@@ -25,6 +24,7 @@ conf = {
 // In Development we should serve assets from mnv folder so you can edit server and components easily (But is probably not a good practice)
 var env = process.env.NODE_ENV || 'development';
 //env = 'production';
+app.use('/libs', express.static(__dirname + '/libs'));
 if ('development' == env) {
   // Development only
   // In development map resources to minerva widget dev folder
@@ -46,7 +46,16 @@ app.use(bodyParser.json())
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+// The world if section
 app.get('/' + theWorldif.conf.homeURL + '/:article?', theWorldif.storytiles );
+// Provide JSON for test purpose
+app.get('/data/:pathToFile', function(req,res){
+  // TODO Check if file exist
+  fs.readFile('data/' + req.params.pathToFile , 'utf8', function(err, data){
+    data = JSON.parse(data);
+    res.json(data);
+  });
+})
 // Use this routing just to bypass CORS ISSUE if needed
 // Remove it with CORS enabled
 app.get('/article/:nid', function (req, res) {
@@ -58,10 +67,8 @@ app.get('/article/:nid', function (req, res) {
     res.on('data', function(chunk) {
       // You can process streamed parts here...
       bodyChunks.push(chunk);
-      console.log("Chunk " + chunk);
     }).on('end', function() {
       var body = Buffer.concat(bodyChunks);
-      console.log(bodyChunks);
       var articles = [];
       var data = JSON.parse(body);
       // //console.log(util.inspect(data, { showHidden: true, depth: null }));

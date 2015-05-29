@@ -1,63 +1,47 @@
 var fs = require('fs'),
     http = require('http'),
-    util = require('util');
+    util = require('util'),
+    WIFconf = {
+      homeURL: 'TheWorldIf',
+      dataHost: "localhost:3100",
+      landingPath: "data/storytiles.json",
+      articlePath: "data"
+    };
 
 exports.storytiles = function (req, res) {
-  var articleID = req.params.article || null;
-  console.log('Article' + articleID);
-  // Mockup data
-  //var footerData = JSON.parse(fs.readFileSync('data/footer.json', 'utf8'));
-  // Use local file or remote service
-  if(false===true){
-    // Local version of articles
-    fs.readFile('data/theWorldIf/storytiles.json', 'utf8', function(err, data){
-      data = JSON.parse(data)
-      outputPage(data['ec-storytilesreveal-0'].tile);
-    });
-  } else {
-
-    http.get("http://" + WIFconf.dataHost + "/jsonify/node/21646922", function(res) {
-      // Buffer the body entirely for processing as a whole.
-      var bodyChunks = [];
-      res.on('data', function(chunk) {
-        // You can process streamed parts here...
-        bodyChunks.push(chunk);
-      }).on('end', function() {
-        var body = Buffer.concat(bodyChunks);
-        var articles = [];
-        var data = JSON.parse(body);
-        console.log(data);
-        //console.log('Data ' + util.inspect(data, { showHidden: true, depth: null }));
-        // TODO Blogs and article provides different object so data mapping should be different for each  type
-        for (var i = 0; i <= data.field_hub_article.length - 1; i++) {
-          //console.log(data.field_hub_image);
-          //console.log('Img ' + i + ' - ' + data.field_hub_image[i]);
-          var img = (data.hasOwnProperty('field_hub_image') && data.field_hub_image[i] != null && data.field_hub_image[i] !== undefined && data.field_hub_image[i].hasOwnProperty('filepath')) ? 'http://' + conf.app.mediaHost + '/' + data.field_hub_image[i].filepath : '';
-          var article = {
-            section: 'This is the section',
-            title: data.field_hub_flytitle[i].value,
-            rubrik: data.field_hub_headline[i].value,
-            image: img,
-            type : 'tile-' + data.field_hub_columns[i].value,
-            nid: data.field_hub_article[i].nid,
-            url: '/' + WIFconf.homeURL + '/' + data.field_hub_article[i].nid,
-            animate: (articleID!==null) ? 'animate' : ''
-          };
-          articles.push(article);
-        };
-        if(articleID!==null){
-          getArticle(articleID, articles);
-        } else {
-          outputPage(articles, articleID);
-        }
-      })
+  var articleID = req.params.article || null, tilesDataSource = "http://" + WIFconf.dataHost + "/" + WIFconf.landingPath;
+  console.log(tilesDataSource);
+  http.get( tilesDataSource , function(res) {
+    // Buffer the body entirely for processing as a whole.
+    var bodyChunks = [];
+    res.on('data', function(chunk) {
+      // You can process streamed parts here...
+      bodyChunks.push(chunk);
+    }).on('end', function() {
+      var body = Buffer.concat(bodyChunks);
+      var articles = [];
+      var data = JSON.parse(body);
+      for (var i = 0; i <= data.tiles.length - 1; i++) {
+        data.tiles[i].url = '/' + WIFconf.homeURL + '/' + data.tiles.id
+        //if(articleID!==null){
+        //  data.tiles[i].animate = 'animate';
+        //}
+        articles.push(data.tiles[i]);
+      };
+      if(articleID!==null){
+        // Also if you are on a single article you need to create the tiles
+        showArticle(articleID, articles);
+      } else {
+        outputPage(data.tiles, articleID);
+      }
     }).on('error', function(e) {
       console.log("Got error: " + e.message);
     });
-  }
+  });
 
-  function getArticle(articleID, articles){
-    http.get("http://" + WIFconf.dataHost + "/jsonify/node/" + articleID, function(res) {
+  function showArticle(articleID, articles){
+    // TODO remove the .json at the end when service is ready
+    http.get("http://" + WIFconf.dataHost + "/" + WIFconf.articlePath + "/" + articleID + ".json", function(res) {
         // Buffer the body entirely for processing as a whole.
         var bodyChunks = [];
         res.on('data', function(chunk) {
@@ -66,24 +50,25 @@ exports.storytiles = function (req, res) {
         }).on('end', function() {
           var body = Buffer.concat(bodyChunks);
           var data = JSON.parse(body);
-          console.log('Article data ' + data);
-          outputPage(articles, data);
+          outputPage(articles, data.article, articleID);
         })
       }).on('error', function(e) {
         console.log("Got error: " + e.message);
       });
   }
 
-  function outputPage(data, article){
+  function outputPage(data, article, articleID){
     var tiles = data, article;
     // 'bower_components',
     hbs.partialsDir = ['mnv/mnv-cmp-masthead/js/tpl/handlebars', 'mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
     //hbs.partialsDir = ['bower_components'];
+    console.log(article);
     res.render('theWorldIfBody', {
         layout: 'theWorldIf',
         article: article,
-        tile: tiles,
+        tiles: tiles,
         className: (article!==null) ? 'article' : 'landing',
+        articleID: articleID,
         //"mnv-cmp-footer": footerData['mnv-cmp-footer'],
         "masthead":{
             "title": "The World If",
@@ -101,11 +86,5 @@ exports.storytiles = function (req, res) {
       });
   }
 }
-
-var WIFconf = {
-  homeURL: 'TheWorldIf',
-  dataHost: "local.demo.economist.com"
-    //var host = "www.economist.com";
-};
 
 exports.conf = WIFconf;
