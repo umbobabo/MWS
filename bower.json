@@ -1,0 +1,26 @@
+{
+  "name": "MWS",
+  "main": "MWS.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/umbobabo/MWS",
+  "authors": [
+    "umbobabo <umbertobabini@economist.com>"
+  ],
+  "description": "Minerva Web Server",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "mnv-cmp-footer": "*",
+    "mnv-cmp-masthead": "*",
+    "mnv-cmp-storytiles-reveal": "*",
+    "modernizer": "~2.8.2",
+    "mnv-shared": "*"
+  }
+}

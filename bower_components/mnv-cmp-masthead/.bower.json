@@ -31,11 +31,11 @@
     "minerva-ws.js",
     "package.json"
   ],
-  "_release": "43c41828bf",
+  "_release": "06963573e8",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "43c41828bf45caea4210268c2be79aecc4050bd9"
+    "commit": "06963573e8512893cee59c12696f6d2b4c8730de"
   },
   "_source": "git://github.com/umbobabo/mnv-cmp-masthead.git",
   "_target": "*",

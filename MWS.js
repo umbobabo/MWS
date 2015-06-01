@@ -49,11 +49,14 @@ app.set('view engine', 'handlebars');
 // The world if section
 app.get('/' + theWorldif.conf.homeURL + '/:article?', theWorldif.storytiles );
 // Provide JSON for test purpose
-app.get('/data/:pathToFile', function(req,res){
+app.get('/data/:pathToFile', function(req, res, next){
   // TODO Check if file exist
   fs.readFile('data/' + req.params.pathToFile , 'utf8', function(err, data){
-    data = JSON.parse(data);
-    res.json(data);
+    if(err){
+      return res.send(err);
+    } else {
+      res.json(JSON.parse(data));
+    }
   });
 })
 // Use this routing just to bypass CORS ISSUE if needed
