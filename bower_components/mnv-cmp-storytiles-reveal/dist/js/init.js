@@ -19,7 +19,7 @@ function initReveal(){
   preventDefaultClicks();
 
   function preventDefaultClicks(){
-    $('.artical-reveal-tile a').on('click', function(e){
+    $('.artical-reveal-tile a, .close-btn').on('click', function(e){
       e.preventDefault();
       //e.stopPropagation();
     });

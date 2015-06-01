@@ -10,7 +10,6 @@ var fs = require('fs'),
 
 exports.storytiles = function (req, res) {
   var articleID = req.params.article || null, tilesDataSource = "http://" + WIFconf.dataHost + "/" + WIFconf.landingPath;
-  console.log(tilesDataSource);
   http.get( tilesDataSource , function(res) {
     // Buffer the body entirely for processing as a whole.
     var bodyChunks = [];
@@ -22,7 +21,7 @@ exports.storytiles = function (req, res) {
       var articles = [];
       var data = JSON.parse(body);
       for (var i = 0; i <= data.tiles.length - 1; i++) {
-        data.tiles[i].url = '/' + WIFconf.homeURL + '/' + data.tiles.id
+        data.tiles[i].url = '/' + WIFconf.homeURL + '/' + data.tiles[i].id
         //if(articleID!==null){
         //  data.tiles[i].animate = 'animate';
         //}
@@ -62,11 +61,11 @@ exports.storytiles = function (req, res) {
     // 'bower_components',
     hbs.partialsDir = ['mnv/mnv-cmp-masthead/js/tpl/handlebars', 'mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
     //hbs.partialsDir = ['bower_components'];
-    console.log(article);
     res.render('theWorldIfBody', {
         layout: 'theWorldIf',
         article: article,
         tiles: tiles,
+        landingPageUrl: '/' + WIFconf.homeURL,
         className: (article!==null) ? 'article' : 'landing',
         articleID: articleID,
         //"mnv-cmp-footer": footerData['mnv-cmp-footer'],
