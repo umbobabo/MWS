@@ -3,13 +3,18 @@ var fs = require('fs'),
     util = require('util'),
     WIFconf = {
       homeURL: 'TheWorldIf',
-      dataHost: "localhost:3100",
-      landingPath: "data/storytiles.json",
-      articlePath: "data"
-    };
+      feed: {
+        host: 'localhost:3100',
+        landingPath: 'data/storytiles.json',
+        articlePath: 'data'
+      }
+    },
+    aliasMapping;
 
 exports.storytiles = function (req, res) {
-  var articleID = req.params.article || null, tilesDataSource = "http://" + WIFconf.dataHost + "/" + WIFconf.landingPath;
+  var articleID = null,
+  tilesDataSource = "http://" + WIFconf.feed.host + "/" + WIFconf.feed.landingPath,
+  aliasMapping = {};
   http.get( tilesDataSource , function(res) {
     // Buffer the body entirely for processing as a whole.
     var bodyChunks = [];
@@ -19,55 +24,65 @@ exports.storytiles = function (req, res) {
     }).on('end', function() {
       var body = Buffer.concat(bodyChunks);
       var articles = [];
-      var data = JSON.parse(body);
+      var data = JSON.parse(body),
+      // Default value for landing page
+      article = { id: null, path: '/' + WIFconf.homeURL };
       for (var i = 0; i <= data.tiles.length - 1; i++) {
-        data.tiles[i].url = '/' + WIFconf.homeURL + '/' + data.tiles[i].id
-        //if(articleID!==null){
-        //  data.tiles[i].animate = 'animate';
-        //}
+        var alias = data.tiles[i].page.aliasUrl;
+        // Add alias to id map
+        aliasMapping[alias] = data.tiles[i].id;
+        data.tiles[i].url = '/' + WIFconf.homeURL + '/' + alias;
         articles.push(data.tiles[i]);
       };
+      // Retrieve the ID from the alias lookup
+      if(req.params.alias){
+        articleID = aliasMapping[req.params.alias];
+      }
       if(articleID!==null){
+        article = { id: articleID, path: req.params.alias };
         // Also if you are on a single article you need to create the tiles
-        showArticle(articleID, articles);
+        showArticle(article, articles);
       } else {
-        outputPage(data.tiles, articleID);
+        outputPage(data.tiles, article);
       }
     }).on('error', function(e) {
       console.log("Got error: " + e.message);
     });
   });
 
-  function showArticle(articleID, articles){
+  function showArticle(article, articles){
     // TODO remove the .json at the end when service is ready
-    http.get("http://" + WIFconf.dataHost + "/" + WIFconf.articlePath + "/" + articleID + ".json", function(res) {
+    http.get("http://" + WIFconf.feed.host + "/" + WIFconf.feed.articlePath + "/" + article.id + ".json", function(res) {
         // Buffer the body entirely for processing as a whole.
         var bodyChunks = [];
         res.on('data', function(chunk) {
           // You can process streamed parts here...
           bodyChunks.push(chunk);
-        }).on('end', function() {
+        })
+        .on('end', function() {
           var body = Buffer.concat(bodyChunks);
           var data = JSON.parse(body);
-          outputPage(articles, data.article, articleID);
+          outputPage(articles, article);
         })
       }).on('error', function(e) {
+        // TODO manage errors
         console.log("Got error: " + e.message);
       });
   }
 
-  function outputPage(data, article, articleID){
+  function outputPage(data, article){
     var tiles = data, article;
     // 'bower_components',
     hbs.partialsDir = ['mnv/mnv-cmp-masthead/js/tpl/handlebars', 'mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
     //hbs.partialsDir = ['bower_components'];
+    //console.log(util.inspect(article, { showHidden: true, depth: null }));
     res.render('theWorldIfBody', {
         layout: 'theWorldIf',
         article: article,
         tiles: tiles,
         landingPageUrl: '/' + WIFconf.homeURL,
-        className: (article!==null) ? 'article' : 'landing',
-        articleID: articleID,
+        className: (article.id!==null) ? 'article' : 'landing',
+        WIFconf: JSON.stringify(WIFconf),
         //"mnv-cmp-footer": footerData['mnv-cmp-footer'],
         "masthead":{
             "title": "The World If",

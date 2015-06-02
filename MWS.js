@@ -47,7 +47,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // The world if section
-app.get('/' + theWorldif.conf.homeURL + '/:article?', theWorldif.storytiles );
+app.get('/' + theWorldif.conf.homeURL + '/:alias?', theWorldif.storytiles );
 // Provide JSON for test purpose
 app.get('/data/:pathToFile', function(req, res, next){
   // TODO Check if file exist
@@ -61,26 +61,26 @@ app.get('/data/:pathToFile', function(req, res, next){
 })
 // Use this routing just to bypass CORS ISSUE if needed
 // Remove it with CORS enabled
-app.get('/article/:nid', function (req, res) {
-  var nid = req.params.nid || null;
-  var response = res;
-  http.get("http://www.economist.com/jsonify/node/" + nid, function(res) {
-    // Buffer the body entirely for processing as a whole.
-    var bodyChunks = [];
-    res.on('data', function(chunk) {
-      // You can process streamed parts here...
-      bodyChunks.push(chunk);
-    }).on('end', function() {
-      var body = Buffer.concat(bodyChunks);
-      var articles = [];
-      var data = JSON.parse(body);
-      // //console.log(util.inspect(data, { showHidden: true, depth: null }));
-      response.json(data);
-    })
-  }).on('error', function(e) {
-    console.log("Got error: " + e.message);
-  });
-});
+// app.get('/article/:nid', function (req, res) {
+//   var nid = req.params.nid || null;
+//   var response = res;
+//   http.get("http://www.economist.com/jsonify/node/" + nid, function(res) {
+//     // Buffer the body entirely for processing as a whole.
+//     var bodyChunks = [];
+//     res.on('data', function(chunk) {
+//       // You can process streamed parts here...
+//       bodyChunks.push(chunk);
+//     }).on('end', function() {
+//       var body = Buffer.concat(bodyChunks);
+//       var articles = [];
+//       var data = JSON.parse(body);
+//       // //console.log(util.inspect(data, { showHidden: true, depth: null }));
+//       response.json(data);
+//     })
+//   }).on('error', function(e) {
+//     console.log("Got error: " + e.message);
+//   });
+// });
 
 app.listen(conf.app.port);
 
