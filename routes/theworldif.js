@@ -60,9 +60,9 @@ exports.storytiles = function (req, res) {
           bodyChunks.push(chunk);
         })
         .on('end', function() {
-          var body = Buffer.concat(bodyChunks);
-          var data = JSON.parse(body);
-          outputPage(articles, article);
+          var body = Buffer.concat(bodyChunks), data = JSON.parse(body);
+          //console.log(util.inspect(data, { showHidden: true, depth: null }));
+          outputPage(articles, data.article);
         })
       }).on('error', function(e) {
         // TODO manage errors
@@ -76,6 +76,7 @@ exports.storytiles = function (req, res) {
     hbs.partialsDir = ['mnv/mnv-cmp-masthead/js/tpl/handlebars', 'mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
     //hbs.partialsDir = ['bower_components'];
     //console.log(util.inspect(article, { showHidden: true, depth: null }));
+    // TODO review and optimise this part
     res.render('theWorldIfBody', {
         layout: 'theWorldIf',
         article: article,

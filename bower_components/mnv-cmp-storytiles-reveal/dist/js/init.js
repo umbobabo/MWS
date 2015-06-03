@@ -1,5 +1,4 @@
-// TODO remove dependeci from $JQuery
-
+// TODO remove dependece from $JQuery
 function initReveal(){
   var articleActive,
   me = this,
@@ -13,11 +12,11 @@ function initReveal(){
   me.config = JSON.parse($(me.el).attr('data-config'));
   me.pushStateUsed = false;
 
-  tileTarget.addEventListener("transitionend", detectTheEnd, false);
-  tileTarget.addEventListener("webkitTransitionEnd", detectTheEnd, false);
-  tileTarget.addEventListener("mozTransitionEnd", detectTheEnd, false);
-  tileTarget.addEventListener("msTransitionEnd", detectTheEnd, false);
-  tileTarget.addEventListener("oTransitionEnd", detectTheEnd, false);
+  // tileTarget.addEventListener("transitionend", detectTheEnd, false);
+  // tileTarget.addEventListener("webkitTransitionEnd", detectTheEnd, false);
+  // tileTarget.addEventListener("mozTransitionEnd", detectTheEnd, false);
+  // tileTarget.addEventListener("msTransitionEnd", detectTheEnd, false);
+  // tileTarget.addEventListener("oTransitionEnd", detectTheEnd, false);
 
   preventDefaultClicks();
 
@@ -27,54 +26,24 @@ function initReveal(){
     });
   }
 
-
-  function resetTransitionDelay() {
-    for (var i = 0; i <= totalOfVals; i++) {
-      $( ".artical-reveal-tile:eq(" + [i] + ")" ).css( "transition-delay", (0.0) + "s" );
-    }
-  }
-
-
-  function detectTheEnd(e) {
-    if (e.propertyName == "opacity") {
-      if(articleActive === true){
-        revealContainer[0].classList.add('inactive');
-        resetTransitionDelay();
-      } else {
-        emptyArticle();
-      }
-    }
-  }
+  // function detectTheEnd(e) {
+  //   if (e.propertyName == "opacity") {
+  //     if(articleActive !== true){
+  //       emptyArticle();
+  //     }
+  //   }
+  // }
 
   function loadArticle(data) {
     var tmp = Handlebars.templates['article'];
     var html = tmp(data);
     $(articleContainer).html(html);
     me.removePreloader();
-    goRevealAnimation();
     me.swapClass(true);
   }
 
-  function triggerReverse(){
-    for (var i = 0; i <= revNumber.length; i++) {
-      $( ".artical-reveal-tile:eq(" + revNumber[i] + ")" )
-      .toggleClass( "animate" )
-      .css( "transition-delay", (0.1 *i) + "s" );
-    }
-  }
-
-  function triggerForwards(){
-    for (var i = 0; i <= forNumber.length; i++) {
-      $( ".artical-reveal-tile:eq(" + forNumber[i] + ")" )
-      .toggleClass( "animate" )
-      .css( "transition-delay", (0.1 *i) + "s" );
-    }
-  }
-
-  totalOfVals = $('.artical-reveal-tile').length;
-
-
   $('.artical-reveal-tile').bind('click', function() {
+    // TODO improve this part
     var id = $(this).attr('data-id'), path = $('a', this).attr('href');
     me.showArticle(id, path);
   });
@@ -92,11 +61,9 @@ function initReveal(){
 
   me.swapClass = function(article){
     if(article){
-      $(me.el).removeClass('landing');
-      $(me.el).addClass('article');
+      $(me.el).removeClass('landing').addClass('article');
     } else {
-      $(me.el).removeClass('article');
-      $(me.el).addClass('landing');
+      $(me.el).removeClass('article').addClass('landing');
     }
   }
 
@@ -104,6 +71,7 @@ function initReveal(){
     if(!articleID){
       // TODO add Error management logic
     } else {
+      // Preloader is inherited by Widget base class
       me.addPreloader();
       $.get("http://" +  me.config.feed.host + "/" + me.config.feed.articlePath + "/" + articleID + ".json", function( data ) {
         // Substitute inline element on the body
@@ -123,58 +91,17 @@ function initReveal(){
     }
   }
 
-  function goRevealAnimation(){
-    $(this).toggleClass("animate");
-
-    articleActive = !articleActive;
-
-    if (articleActive === false){
-      revealContainer[0].classList.add('active');
-    }
-
-    indexVal = $( ".artical-reveal-tile" ).index( $(this) );
-
-    revNumber = [];
-    forNumber = [];
-
-    indexValBelow = indexVal - 1;
-
-    for (var i = indexValBelow; i >= 0 ; i--) {
-      // console.log("i from below: " +  i);
-      revNumber.push(i);
-    };
-
-    //loop through above and add animating class;
-    for (var i = (indexVal+1); i < totalOfVals; i++) {
-      forNumber.push(i);
-      // console.log(forNumber);
-    };
-
-
-    triggerReverse();
-    triggerForwards();
-  }
-
   function emptyArticle(){
     articleContainer.innerHTML = '';
     if(!me.pushStateUsed){
       // TODO Replace title with page information
-      history.pushState({},"Replace this with the title page", me.config.homeURL);
+      history.pushState({},"Replace this with the title page", "/" + me.config.homeURL);
     }
   }
 
   me.goLanding = function(){
-    if (articleActive === true){
-      revealContainer[0].classList.remove('inactive');
-      revealContainer[0].classList.add('active');
-      for (var i = 0; i <= (tile.length-1); i++) {
-        tile[i].classList.toggle('animate');
-      }
-    } else if(articleActive === false){
-      revealContainer[0].classList.remove('active');
-    }
+    history.pushState({},"Replace this with the title page", "/" + me.config.homeURL);
     me.swapClass(false);
-    articleActive = !articleActive;
   }
 
   close.addEventListener("click", function () {
@@ -183,7 +110,7 @@ function initReveal(){
 
   return me;
 }
-
+// Add inheritance to get the widget preloader
 initReveal.prototype = new Widget();
 
 docReady(function(){
