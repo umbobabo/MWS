@@ -110,14 +110,12 @@ html, body {
 .mnv-ec-storytilesreveal {
   height: 100%;
   font-family: Neutra2-Medium; }
-
-ul, li {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
-
-html {
-  box-sizing: border-box; }
+  .mnv-ec-storytilesreveal * {
+    box-sizing: border-box; }
+  .mnv-ec-storytilesreveal ul, .mnv-ec-storytilesreveal li {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
 
 *, *:before, *:after {
   box-sizing: inherit; }
@@ -173,10 +171,6 @@ ul {
   color: #fff;
   font-size: 20px;
   text-align: center;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
   flex: 1;
   background-color: black;
   border-bottom: 4px solid #000;
@@ -319,12 +313,70 @@ ul {
 .tile-1:nth-child(13) {
   border-right: 0; }
 
-.animate {
-  transform: translateZ(50em);
-  /*transform: translateX(-500em);*/
-  /*  transform: translateY(-5em);*/
-  /*  transform: scale(2);*/
-  opacity: 0; }
+.artical-reveal-tile {
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 0.7s;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-transition-delay: initial; }
+
+.article-reveal-container ul li:nth-child(0) {
+  -webkit-transition-delay: 0s; }
+
+.article-reveal-container ul li:nth-child(1) {
+  -webkit-transition-delay: 0.2s; }
+
+.article-reveal-container ul li:nth-child(2) {
+  -webkit-transition-delay: 0.4s; }
+
+.article-reveal-container ul li:nth-child(3) {
+  -webkit-transition-delay: 0.6s; }
+
+.article-reveal-container ul li:nth-child(4) {
+  -webkit-transition-delay: 0.8s; }
+
+.article-reveal-container ul li:nth-child(5) {
+  -webkit-transition-delay: 1s; }
+
+.article-reveal-container ul li:nth-child(6) {
+  -webkit-transition-delay: 1.2s; }
+
+.article-reveal-container ul li:nth-child(7) {
+  -webkit-transition-delay: 1.4s; }
+
+.article-reveal-container ul li:nth-child(8) {
+  -webkit-transition-delay: 1.6s; }
+
+.article-reveal-container ul li:nth-child(9) {
+  -webkit-transition-delay: 1.8s; }
+
+.article-reveal-container ul li:nth-child(10) {
+  -webkit-transition-delay: 2s; }
+
+.article-reveal-container ul li:nth-child(11) {
+  -webkit-transition-delay: 2.2s; }
+
+.article-reveal-container ul li:nth-child(12) {
+  -webkit-transition-delay: 2.4s; }
+
+.article-reveal-container ul li:nth-child(13) {
+  -webkit-transition-delay: 2.6s; }
+
+.article-reveal-container ul li:nth-child(14) {
+  -webkit-transition-delay: 2.8s; }
+
+.landing .artical-reveal-tile.tile-full, .landing .artical-reveal-tile.cover {
+  transform: translate(0%, 0%); }
+.landing .artical-reveal-tile.tile-1 {
+  transform: none; }
+
+.article .artical-reveal-tile.tile-full:nth-child(odd), .article .artical-reveal-tile.cover:nth-child(odd) {
+  transform: translate(-100%, 0%); }
+.article .artical-reveal-tile.tile-full:nth-child(even), .article .artical-reveal-tile.cover:nth-child(even) {
+  transform: translate(100%, 0%); }
+.article .artical-reveal-tile.tile-1:nth-child(odd) {
+  transform: translate(-400%, 0%); }
+.article .artical-reveal-tile.tile-1:nth-child(even) {
+  transform: translate(400%, 0%); }
 
 button {
   width: 200px;
@@ -365,22 +417,6 @@ button {
 .close-btn:hover {
   cursor: pointer;
   background-color: #fff; }
-</style>
-<iframe src="http://www.economist.com/news/essays/21609649-china-becomes-again-worlds-largest-economy-it-wants-respect-it-enjoyed-centuries-past-it-does-not" width="960" height="6500" class="frameMe"></iframe>
-<style>
-
-.frameMe {
-  margin: auto;
-  border: none;
-  height: 20000px;
-  overflow: hidden;
-}
-
-.article-container {
-  text-align: center !important;
-    /*margin-top: -73px;*/
-}
-
 </style>
 <img src="{{article.image}}" />
 {{article.flyTitle}}

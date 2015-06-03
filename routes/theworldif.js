@@ -73,8 +73,8 @@ exports.storytiles = function (req, res) {
   function outputPage(data, article){
     var tiles = data, article;
     // 'bower_components',
-    hbs.partialsDir = ['mnv/mnv-cmp-masthead/js/tpl/handlebars', 'mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
-    //hbs.partialsDir = ['bower_components'];
+    //hbs.partialsDir = ['mnv/mnv-cmp-masthead/js/tpl/handlebars', 'mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
+    hbs.partialsDir = ['bower_components','views/partials/theWorldIf'];
     //console.log(util.inspect(article, { showHidden: true, depth: null }));
     // TODO review and optimise this part
     res.render('theWorldIfBody', {
