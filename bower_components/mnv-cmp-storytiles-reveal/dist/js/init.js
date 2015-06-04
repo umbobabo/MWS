@@ -12,11 +12,11 @@ function initReveal(){
   me.config = JSON.parse($(me.el).attr('data-config'));
   me.pushStateUsed = false;
 
-  // tileTarget.addEventListener("transitionend", detectTheEnd, false);
-  // tileTarget.addEventListener("webkitTransitionEnd", detectTheEnd, false);
-  // tileTarget.addEventListener("mozTransitionEnd", detectTheEnd, false);
-  // tileTarget.addEventListener("msTransitionEnd", detectTheEnd, false);
-  // tileTarget.addEventListener("oTransitionEnd", detectTheEnd, false);
+  tileTarget.addEventListener("transitionend", detectTheEnd, false);
+  tileTarget.addEventListener("webkitTransitionEnd", detectTheEnd, false);
+  tileTarget.addEventListener("mozTransitionEnd", detectTheEnd, false);
+  tileTarget.addEventListener("msTransitionEnd", detectTheEnd, false);
+  tileTarget.addEventListener("oTransitionEnd", detectTheEnd, false);
 
   preventDefaultClicks();
 
@@ -26,13 +26,13 @@ function initReveal(){
     });
   }
 
-  // function detectTheEnd(e) {
-  //   if (e.propertyName == "opacity") {
-  //     if(articleActive !== true){
-  //       emptyArticle();
-  //     }
-  //   }
-  // }
+  function detectTheEnd(e) {
+    if ($(me.el).hasClass('landing')) {
+    //   if(articleActive !== true){
+        emptyArticle();
+    //   }
+    }
+  }
 
   function loadArticle(data) {
     var tmp = Handlebars.templates['article'];

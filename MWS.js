@@ -47,7 +47,8 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // The world if section
-app.get('/' + theWorldif.conf.homeURL + '/:alias?', theWorldif.storytiles );
+app.get('/' + theWorldif.conf.homeURL + '/:alias?', theWorldif.routes );
+
 // Provide JSON for test purpose
 app.get('/data/:pathToFile', function(req, res, next){
   // TODO Check if file exist

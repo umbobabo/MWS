@@ -9,7 +9,40 @@ var fs = require('fs'),
         articlePath: 'data'
       }
     },
-    aliasMapping;
+    aliasMapping,
+    inlineParser = require('../mnv_modules/inline_parser'),
+    me = this;
+
+exports.routes = function(req, res){
+  if(req.query.output==='html'){
+    me.html(req, res);
+  } else {
+    me.storytiles(req, res);
+  }
+}
+// Use a specific template with retrieved data
+exports.html = function(req, res){
+  var response = res;
+  http.get(req.query.data, function(res) {
+    // Buffer the body entirely for processing as a whole.
+    var bodyChunks = [];
+    res.on('data', function(chunk) {
+      // You can process streamed parts here...
+      bodyChunks.push(chunk);
+    })
+    .on('end', function() {
+      var body = Buffer.concat(bodyChunks), data = JSON.parse(body);
+      data.article.body = inlineParser.parseHTML(data.article.body);
+      // TODO Abstract part related to aticle data
+      response.render(req.query.template, {
+        article: data.article
+      });
+    })
+  }).on('error', function(e) {
+    // TODO manage errors
+    console.log("Got error: " + e.message);
+  });
+}
 
 exports.storytiles = function (req, res) {
   var articleID = null,
@@ -62,6 +95,7 @@ exports.storytiles = function (req, res) {
         .on('end', function() {
           var body = Buffer.concat(bodyChunks), data = JSON.parse(body);
           //console.log(util.inspect(data, { showHidden: true, depth: null }));
+          data.article.body = inlineParser.parseHTML(data.article.body);
           outputPage(articles, data.article);
         })
       }).on('error', function(e) {
@@ -74,7 +108,7 @@ exports.storytiles = function (req, res) {
     var tiles = data, article;
     // 'bower_components',
     //hbs.partialsDir = ['mnv/mnv-cmp-masthead/js/tpl/handlebars', 'mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
-    hbs.partialsDir = ['bower_components','views/partials/theWorldIf'];
+    hbs.partialsDir = ['bower_components','views'];
     //console.log(util.inspect(article, { showHidden: true, depth: null }));
     // TODO review and optimise this part
     res.render('theWorldIfBody', {

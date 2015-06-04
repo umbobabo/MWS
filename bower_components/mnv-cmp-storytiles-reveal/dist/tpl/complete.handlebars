@@ -377,6 +377,8 @@ ul {
   transform: translate(-400%, 0%); }
 .article .artical-reveal-tile.tile-1:nth-child(even) {
   transform: translate(400%, 0%); }
+.article .article-reveal-container {
+  pointer-events: none; }
 
 button {
   width: 200px;
@@ -418,13 +420,10 @@ button {
   cursor: pointer;
   background-color: #fff; }
 </style>
-<img src="{{article.image}}" />
-{{article.flyTitle}}
-{{article.rubric}}
-{{{article.body}}}
 <div class="main-container">
   <a class="close-btn" href="{{landingPageUrl}}">X</a>
-  <div class="article-container">{{> article}}</div>
+  <!-- TODO The article partials have to be adde only on the SS version, not on the CS version -->
+  <div class="article-container">{{>partials/theWorldIf/article}}</div>CCC
   <div class="article-reveal-container">
     <ul>
       {{#each tiles}}
