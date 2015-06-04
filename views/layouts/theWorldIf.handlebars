@@ -1,38 +1,29 @@
 <!doctype html>
 <html class="no-js">
 <head>
+    <title>{{page.title}}</title>
+    {{#each page.meta}}
+        <meta {{#each this}} {{@key}}="{{this}}" {{/each}} >
+    {{/each}}
     <meta charset="utf-8" />
-    <!-- TODO templating meta tags -->
-    <title>The World If 2015</title>
     <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
     <script src="/bower_components/modernizer/modernizr.js"></script>
-    <!-- <link rel="stylesheet" href="/bower_components/mnv-cmp-storytiles-reveal/dist/css/style.css"> -->
-    <link rel="stylesheet" href="/bower_components/mnv-cmp-storytiles-reveal/css/style.css">
-    <link rel="stylesheet" href="/bower_components/mnv-cmp-masthead/css/style.css">
-    <script src="http://cdn.static-economist.com/sites/all/themes/econfinal/js/lib/handlebars.runtime.js"></script>
-    <script src="/bower_components/mnv-cmp-storytiles-reveal/js/tpl/template.js"></script>
+    <link rel="stylesheet" href="/bower_components/mnv-cmp-storytiles-reveal/dist/css/style.css">
+    <link rel="stylesheet" href="/bower_components/mnv-cmp-masthead/dist/css/style.css">
     <script src="/bower_components/mnv-shared/js/widget.js"></script>
     <script src="/bower_components/mnv-shared/js/docReady.js"></script>
-    <!-- Minerva dependencies just for test> -->
-<script type="text/javascript" src="http://cdn.static-economist.com/sites/default/files/external/js_libs/angular.min.js"></script>
-<script type="text/javascript" src="http://cdn.static-economist.com/sites/default/files/external/js_libs/hammer.min.js"></script>
-<script type="text/javascript" src="http://cdn.static-economist.com/sites/default/files/external/js_libs/ftscroller.min.js"></script>
-<script type="text/javascript" src="http://cdn.static-economist.com/sites/default/files/external/js_libs/d3js.min.js"></script>
-
-
-    <!-- Client-side inline tag parser -->
-    <!--  // <script src="/libs/inline_parser/inline_parser.js"></script> -->
     <!-- Paywall -->
     <!-- <link rel="stylesheet" href="libs/coin/project/src/coin_paywall.css"> -->
     <!-- <script src="libs/coin/project/src/coin_paywall.js"></script> -->
     <!-- <script src="/bower_components/mnv-cmp-storytiles-reveal/dist/js/init.js"></script> -->
-    <script src="/bower_components/mnv-cmp-storytiles-reveal/js/init.js"></script>
+    <script src="/bower_components/mnv-cmp-storytiles-reveal/dist/js/init.js"></script>
 </head>
 <body>
     <div data-mnv="ecMasthead" class="mnv-widget mnv-ec-masthead">
         {{>mnv-cmp-masthead/dist/tpl/html}}
     </div>
     {{{body}}}
+    <!-- TODO ADD this only on DEV ENV -->
     <script type='text/javascript' id="__bs_script__">//<![CDATA[
     document.write("<script async src='//HOST:3000/browser-sync/browser-sync-client.1.9.2.js'><\/script>".replace(/HOST/g, location.hostname).replace(/PORT/g, location.port));
 //]]></script>

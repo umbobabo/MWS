@@ -45,12 +45,13 @@ exports.minerva = function(el){
   attr = {
     "project": attrTemp.project || '',
     "className": attrTemp.className || '',
-    "id": attrTemp.id || ''
+    "id": attrTemp.id || '',
+    "version": attrTemp.version || '0.0.1'
   }
   // TODO
   // We have to provide also the version of the widget
   return '<div data-mnv="' + attr.project + '" class="mnv-widget mnv-' + attr.project + attr.className + '" id="' + attr.id + '"></div>\
-          <script src="http://cdn.static-economist.com/sites/default/files/external/minerva/' + attr.project + '/0.1.5/init.min.js" type="text/javascript"></script>';
+          <script src="http://cdn.static-economist.com/sites/default/files/external/minerva/' + attr.project + '/' + attr.version + '/init.min.js" type="text/javascript"></script>';
 }
 
 exports.image = function(el){

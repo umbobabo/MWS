@@ -1,4 +1,13 @@
 {
+  "page": {
+    "title": "This is a cooooool page!",
+    "meta": [
+      {
+        "property": "og:image",
+        "content": "http://local.demo.economist.com/sites/default/files/the-economist-logo.gif"
+      }
+    ]
+  },
   "tiles": [
     {
       "section": "Cover",

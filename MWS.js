@@ -25,13 +25,13 @@ conf = {
 var env = process.env.NODE_ENV || 'development';
 //env = 'production';
 app.use('/libs', express.static(__dirname + '/libs'));
-if ('development' == env) {
-  // Development only
-  // In development map resources to minerva widget dev folder
-  app.use('/bower_components', express.static(__dirname + '/mnv'));
-} else {
+// if ('development' == env) {
+//   // Development only
+//   // In development map resources to minerva widget dev folder
+//   app.use('/bower_components', express.static(__dirname + '/mnv'));
+// } else {
   app.use('/bower_components', express.static(__dirname + '/bower_components'));
-}
+// }
 
 // TODO Implements useful log management
 app.use(logger({path: "logs/logs.txt"}));

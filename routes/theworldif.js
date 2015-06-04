@@ -76,7 +76,7 @@ exports.storytiles = function (req, res) {
         // Also if you are on a single article you need to create the tiles
         showArticle(article, articles);
       } else {
-        outputPage(data.tiles, article);
+        outputPage(data, article);
       }
     }).on('error', function(e) {
       console.log("Got error: " + e.message);
@@ -105,16 +105,16 @@ exports.storytiles = function (req, res) {
   }
 
   function outputPage(data, article){
-    var tiles = data, article;
     // 'bower_components',
     //hbs.partialsDir = ['mnv/mnv-cmp-masthead/js/tpl/handlebars', 'mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
     hbs.partialsDir = ['bower_components','views'];
-    //console.log(util.inspect(article, { showHidden: true, depth: null }));
+    //console.log(util.inspect(data, { showHidden: true, depth: null }));
     // TODO review and optimise this part
     res.render('theWorldIfBody', {
         layout: 'theWorldIf',
+        page: data.page,
         article: article,
-        tiles: tiles,
+        tiles: data.tiles,
         landingPageUrl: '/' + WIFconf.homeURL,
         className: (article.id!==null) ? 'article' : 'landing',
         WIFconf: JSON.stringify(WIFconf),

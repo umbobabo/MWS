@@ -34,9 +34,9 @@ function initReveal(){
     }
   }
 
-  function loadArticle(data) {
-    var tmp = Handlebars.templates['article'];
-    var html = tmp(data);
+  function loadArticle(html) {
+    //var tmp = Handlebars.templates['article'];
+    //var html = tmp(data);
     $(articleContainer).html(html);
     me.removePreloader();
     me.swapClass(true);
@@ -73,11 +73,13 @@ function initReveal(){
     } else {
       // Preloader is inherited by Widget base class
       me.addPreloader();
-      $.get("http://" +  me.config.feed.host + "/" + me.config.feed.articlePath + "/" + articleID + ".json", function( data ) {
+      $.get( path + "?output=html&template=partials/theWorldIf/article&data=http://" +  me.config.feed.host + "/" + me.config.feed.articlePath + "/" + articleID + ".json" , function( html ) {
+      // Olad approach with client-side handlebars and data request
+      //$.get("http://" +  me.config.feed.host + "/" + me.config.feed.articlePath + "/" + articleID + ".json", function( data ) {
         // Substitute inline element on the body
         //var parser = new inlineParser(data.body + 'ous east of the country, the post-Tiananmen [image|iid=86801|fid=165301|title=|alt=|caption=|use_original_size=|image_link=] deal\u2014stay out of politics and you can do anything you want\u2014is fraying, and [minerva|iid=87948|project=timeline] public outrage at corruption, pollution and other problems grows more vociferous. Yet rather than allow more formal popular participation and move towards the rule of law, China\u2019s leaders are allowing less participation as they crack down on free-thinkers, believing that carrying out real, structural reform is more dangerous than not doing so. In fact the opposite may be true. The deep fissures in the country will be increasingly hard to paper over with mere prosperity.\u003c\/p\u003e\u003cp\u003e\u003cspan\u003e[minerva|project=essay-china-gdp]\u003c\/span\u003e\u003c\/p\u003e\u003cp\u003eIt is not just that seeking to placate the public at home with \u003cem\u003ebraggadocio\u003c\/em\u003e overseas will make it harder still for China to garner allies and respect. There is a deeper problem. Many countries around the world admire, and would like to emulate, the undemocratic but effective way that China has managed its decades of growth. If China\u2019s domestic politics look less stable, some of that admiration will wane. And even if things can be held together, for the time being, admiration for China does not translate into affection for it, or');
         //var body = parser.parseHTML();
-        loadArticle(data);
+        loadArticle(html);
       })
       .fail(function() {
         // TODO add error management
