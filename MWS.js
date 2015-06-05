@@ -5,7 +5,7 @@ var express = require("express"),
     http = require('http'),
     bodyParser = require('body-parser'),
     util = require('util'),
-    theWorldif = require('./routes/theworldif');
+    theWorldif = require('./routes/theWorldIf/routes');
 
 app = express();
 hbs =  exphbs.create();
@@ -52,7 +52,7 @@ app.get('/' + theWorldif.conf.homeURL + '/:alias?', theWorldif.routes );
 // Provide JSON for test purpose
 app.get('/data/:pathToFile', function(req, res, next){
   // TODO Check if file exist
-  fs.readFile('data/' + req.params.pathToFile , 'utf8', function(err, data){
+  fs.readFile('data/' + req.params.pathToFile + '.json' , 'utf8', function(err, data){
     if(err){
       return res.send(err);
     } else {

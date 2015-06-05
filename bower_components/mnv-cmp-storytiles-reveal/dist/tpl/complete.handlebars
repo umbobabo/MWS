@@ -85,19 +85,19 @@
 
 @font-face {
   font-family: Neutra2-Medium;
-  src: url('../fonts/Neutraface2Display-Medium.otf') format('opentype'); }
+  src: url('/bower_components/mnv-shared/fonts/Neutraface2Display-Medium.otf') format('opentype'); }
 
 @font-face {
   font-family: Neutra2-Bold;
-  src: url('../fonts/Neutraface2Display-Bold.otf') format('opentype'); }
+  src: url('/bower_components/mnv-shared/fonts/Neutraface2Display-Bold.otf') format('opentype'); }
 
 @font-face {
   font-family: Neutra2-Titling;
-  src: url('../fonts/Neutraface2Display-Titling.ttf') format('opentype'); }
+  src: url('/bower_components/mnv-shared/fonts/Neutraface2Display-Titling.ttf') format('opentype'); }
 
 @font-face {
   font-family: Neutra2-Light;
-  src: url('../fonts/Neutraface2Display-Light.otf') format('opentype'); }
+  src: url('/bower_components/mnv-shared/fonts/Neutraface2Display-Light.otf') format('opentype'); }
 
 html, body {
   width: 100%;
@@ -159,7 +159,7 @@ ul {
   flex-direction: row; }
 
 .article-container {
-  max-width: 1220px;
+  max-width: 960px;
   height: 100%;
   width: 100%;
   margin: 0 auto;
@@ -176,6 +176,18 @@ ul {
   border-bottom: 4px solid #000;
   opacity: 1;
   overflow: hidden; }
+  .artical-reveal-tile a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%; }
+  .artical-reveal-tile .tile-content {
+    max-width: 960px;
+    margin: auto;
+    position: relative; }
   .artical-reveal-tile .section, .artical-reveal-tile .title, .artical-reveal-tile .rubrik {
     pointer-events: none;
     z-index: 2;
@@ -235,21 +247,21 @@ ul {
   .article-reveal-container ul li:nth-child(1) .rubrik, .article-reveal-container ul li:nth-child(1) .section {
     display: block; }
 
-.tile-full {
+.artical-reveal-tile {
   min-width: 100%;
   position: relative; }
-  .tile-full:before {
+  .artical-reveal-tile:before {
     display: block;
     content: '';
     width: 100%;
     padding-top: 25%; }
-  .tile-full > .content {
+  .artical-reveal-tile > .content {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0; }
-  .tile-full .image-grad {
+  .artical-reveal-tile .image-grad {
     pointer-events: none;
     width: 100%;
     height: 100%;
@@ -273,30 +285,33 @@ ul {
     height: 100%;
     opacity: 0.8; }
 
-.tile-1 {
+.artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10), .artical-reveal-tile:nth-of-type(11), .artical-reveal-tile:nth-of-type(12), .artical-reveal-tile:nth-of-type(13) {
   min-width: 25%;
   border-right: 6px solid #000;
   position: relative; }
-  .tile-1:before {
+  @media (max-width: 580px) {
+    .artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10), .artical-reveal-tile:nth-of-type(11), .artical-reveal-tile:nth-of-type(12), .artical-reveal-tile:nth-of-type(13) {
+      min-width: 50%; } }
+  .artical-reveal-tile:nth-of-type(4):before, .artical-reveal-tile:nth-of-type(5):before, .artical-reveal-tile:nth-of-type(6):before, .artical-reveal-tile:nth-of-type(7):before, .artical-reveal-tile:nth-of-type(10):before, .artical-reveal-tile:nth-of-type(11):before, .artical-reveal-tile:nth-of-type(12):before, .artical-reveal-tile:nth-of-type(13):before {
     display: block;
     content: '';
     width: 100%;
     padding-top: 75%; }
-  .tile-1 > .content {
+  .artical-reveal-tile:nth-of-type(4) > .content, .artical-reveal-tile:nth-of-type(5) > .content, .artical-reveal-tile:nth-of-type(6) > .content, .artical-reveal-tile:nth-of-type(7) > .content, .artical-reveal-tile:nth-of-type(10) > .content, .artical-reveal-tile:nth-of-type(11) > .content, .artical-reveal-tile:nth-of-type(12) > .content, .artical-reveal-tile:nth-of-type(13) > .content {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0; }
-  .tile-1 .title {
+  .artical-reveal-tile:nth-of-type(4) .title, .artical-reveal-tile:nth-of-type(5) .title, .artical-reveal-tile:nth-of-type(6) .title, .artical-reveal-tile:nth-of-type(7) .title, .artical-reveal-tile:nth-of-type(10) .title, .artical-reveal-tile:nth-of-type(11) .title, .artical-reveal-tile:nth-of-type(12) .title, .artical-reveal-tile:nth-of-type(13) .title {
     font-size: 20px; }
     @media (max-width: 480px) {
-      .tile-1 .title {
+      .artical-reveal-tile:nth-of-type(4) .title, .artical-reveal-tile:nth-of-type(5) .title, .artical-reveal-tile:nth-of-type(6) .title, .artical-reveal-tile:nth-of-type(7) .title, .artical-reveal-tile:nth-of-type(10) .title, .artical-reveal-tile:nth-of-type(11) .title, .artical-reveal-tile:nth-of-type(12) .title, .artical-reveal-tile:nth-of-type(13) .title {
         top: 16px;
         font-size: 16px; } }
-  .tile-1 .section, .tile-1 .rubrik {
+  .artical-reveal-tile:nth-of-type(4) .section, .artical-reveal-tile:nth-of-type(4) .rubrik, .artical-reveal-tile:nth-of-type(5) .section, .artical-reveal-tile:nth-of-type(5) .rubrik, .artical-reveal-tile:nth-of-type(6) .section, .artical-reveal-tile:nth-of-type(6) .rubrik, .artical-reveal-tile:nth-of-type(7) .section, .artical-reveal-tile:nth-of-type(7) .rubrik, .artical-reveal-tile:nth-of-type(10) .section, .artical-reveal-tile:nth-of-type(10) .rubrik, .artical-reveal-tile:nth-of-type(11) .section, .artical-reveal-tile:nth-of-type(11) .rubrik, .artical-reveal-tile:nth-of-type(12) .section, .artical-reveal-tile:nth-of-type(12) .rubrik, .artical-reveal-tile:nth-of-type(13) .section, .artical-reveal-tile:nth-of-type(13) .rubrik {
     display: none; }
-  .tile-1:nth-of-type(4) .image-tint, .tile-1:nth-of-type(5) .image-tint, .tile-1:nth-of-type(6) .image-tint, .tile-1:nth-of-type(7) .image-tint, .tile-1:nth-of-type(10) .image-tint, .tile-1:nth-of-type(11) .image-tint, .tile-1:nth-of-type(12) .image-tint, .tile-1:nth-of-type(13) .image-tint {
+  .artical-reveal-tile:nth-of-type(4):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(13) .image-tint {
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -304,13 +319,13 @@ ul {
     height: 100%;
     z-index: 1;
     background-color: rgba(255, 0, 0, 0.3); }
-  .tile-1:nth-of-type(10) .image-tint, .tile-1:nth-of-type(11) .image-tint, .tile-1:nth-of-type(12) .image-tint, .tile-1:nth-of-type(13) .image-tint {
+  .artical-reveal-tile:nth-of-type(4):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(13) .image-tint {
     background-color: rgba(40, 130, 30, 0.3); }
 
-.tile-1:nth-child(7) {
+.artical-reveal-tile:nth-child(7) {
   border-right: 0; }
 
-.tile-1:nth-child(13) {
+.artical-reveal-tile:nth-child(13) {
   border-right: 0; }
 
 .artical-reveal-tile {
@@ -319,63 +334,72 @@ ul {
   -webkit-transition-timing-function: ease-in-out;
   -webkit-transition-delay: initial; }
 
-.article-reveal-container ul li:nth-child(0) {
+.artical-reveal-tile:nth-child(0) {
   -webkit-transition-delay: 0s; }
 
-.article-reveal-container ul li:nth-child(1) {
+.artical-reveal-tile:nth-child(1) {
   -webkit-transition-delay: 0.2s; }
 
-.article-reveal-container ul li:nth-child(2) {
+.artical-reveal-tile:nth-child(2) {
   -webkit-transition-delay: 0.4s; }
 
-.article-reveal-container ul li:nth-child(3) {
+.artical-reveal-tile:nth-child(3) {
   -webkit-transition-delay: 0.6s; }
 
-.article-reveal-container ul li:nth-child(4) {
+.artical-reveal-tile:nth-child(4) {
   -webkit-transition-delay: 0.8s; }
 
-.article-reveal-container ul li:nth-child(5) {
+.artical-reveal-tile:nth-child(5) {
   -webkit-transition-delay: 1s; }
 
-.article-reveal-container ul li:nth-child(6) {
+.artical-reveal-tile:nth-child(6) {
   -webkit-transition-delay: 1.2s; }
 
-.article-reveal-container ul li:nth-child(7) {
+.artical-reveal-tile:nth-child(7) {
   -webkit-transition-delay: 1.4s; }
 
-.article-reveal-container ul li:nth-child(8) {
+.artical-reveal-tile:nth-child(8) {
   -webkit-transition-delay: 1.6s; }
 
-.article-reveal-container ul li:nth-child(9) {
+.artical-reveal-tile:nth-child(9) {
   -webkit-transition-delay: 1.8s; }
 
-.article-reveal-container ul li:nth-child(10) {
+.artical-reveal-tile:nth-child(10) {
   -webkit-transition-delay: 2s; }
 
-.article-reveal-container ul li:nth-child(11) {
+.artical-reveal-tile:nth-child(11) {
   -webkit-transition-delay: 2.2s; }
 
-.article-reveal-container ul li:nth-child(12) {
+.artical-reveal-tile:nth-child(12) {
   -webkit-transition-delay: 2.4s; }
 
-.article-reveal-container ul li:nth-child(13) {
+.artical-reveal-tile:nth-child(13) {
   -webkit-transition-delay: 2.6s; }
 
-.article-reveal-container ul li:nth-child(14) {
+.artical-reveal-tile:nth-child(14) {
   -webkit-transition-delay: 2.8s; }
 
-.landing .artical-reveal-tile.tile-full, .landing .artical-reveal-tile.cover {
+.article-reveal-container ul li:nth-child(1) {
+  background-color: white; }
+
+.article-reveal-container ul li:nth-child(2) {
+  background-color: black; }
+
+.article-reveal-container ul li:nth-child(3) {
+  background-color: red; }
+
+.landing .artical-reveal-tile {
   transform: translate(0%, 0%); }
-.landing .artical-reveal-tile.tile-1 {
+.landing .artical-reveal-tile:nth-of-type(4), .landing .artical-reveal-tile:nth-of-type(5), .landing .artical-reveal-tile:nth-of-type(6), .landing .artical-reveal-tile:nth-of-type(7), .landing .artical-reveal-tile:nth-of-type(10), .landing .artical-reveal-tile:nth-of-type(11), .landing .artical-reveal-tile:nth-of-type(12), .landing .artical-reveal-tile:nth-of-type(13) {
   transform: none; }
 
-.article .artical-reveal-tile.tile-full:nth-child(odd), .article .artical-reveal-tile.cover:nth-child(odd) {
+.article .artical-reveal-tile:nth-child(odd) {
   transform: translate(-100%, 0%); }
-.article .artical-reveal-tile.tile-full:nth-child(even), .article .artical-reveal-tile.cover:nth-child(even) {
+.article .artical-reveal-tile:nth-child(even) {
   transform: translate(100%, 0%); }
-.article .artical-reveal-tile.tile-1:nth-child(odd) {
+.article .artical-reveal-tile:nth-of-type(4):nth-child(odd), .article .artical-reveal-tile:nth-of-type(5):nth-child(odd), .article .artical-reveal-tile:nth-of-type(6):nth-child(odd), .article .artical-reveal-tile:nth-of-type(7):nth-child(odd), .article .artical-reveal-tile:nth-of-type(10):nth-child(odd), .article .artical-reveal-tile:nth-of-type(11):nth-child(odd), .article .artical-reveal-tile:nth-of-type(12):nth-child(odd), .article .artical-reveal-tile:nth-of-type(13):nth-child(odd) {
   transform: translate(-400%, 0%); }
-.article .artical-reveal-tile.tile-1:nth-child(even) {
+.article .artical-reveal-tile:nth-of-type(4):nth-child(even), .article .artical-reveal-tile:nth-of-type(5):nth-child(even), .article .artical-reveal-tile:nth-of-type(6):nth-child(even), .article .artical-reveal-tile:nth-of-type(7):nth-child(even), .article .artical-reveal-tile:nth-of-type(10):nth-child(even), .article .artical-reveal-tile:nth-of-type(11):nth-child(even), .article .artical-reveal-tile:nth-of-type(12):nth-child(even), .article .artical-reveal-tile:nth-of-type(13):nth-child(even) {
   transform: translate(400%, 0%); }
 .article .article-reveal-container {
   pointer-events: none; }
@@ -419,6 +443,29 @@ button {
 .close-btn:hover {
   cursor: pointer;
   background-color: #fff; }
+
+@media (min-width: 960px) {
+  .artical-reveal-tile:nth-child(1) {
+    max-height: 600px; } }
+@media (min-width: 960px) {
+  .artical-reveal-tile {
+    max-height: 300px; } }
+@media (min-width: 960px) {
+  .artical-reveal-tile .image {
+    max-width: 960px;
+    right: 0;
+    left: auto; } }
+
+@media (max-width: 580px) {
+  .rubrik {
+    display: none; }
+
+  .text-part * {
+    position: relative !important;
+    top: auto !important; }
+
+  .artical-reveal-tile-link {
+    position: relative !important; } }
 </style>
 <div class="main-container">
   <a class="close-btn" href="{{landingPageUrl}}">X</a>
@@ -427,17 +474,19 @@ button {
   <div class="article-reveal-container">
     <ul>
       {{#each tiles}}
-      <li class="artical-reveal-tile {{type}} {{animate}}" data-id="{{id}}" id="tile{{id}}">
-        <a href="{{url}}">
+      <li class="artical-reveal-tile {{animate}}" data-id="{{id}}" id="tile{{id}}">
+        <a href="{{url}}" class="artical-reveal-tile-link">
           <div class="tile-content">
-            <h2 class="section">{{section}}</h2>
-            <h2 class="title">{{title}}</h2>
-            <h2 class="rubrik">{{rubric}}</h2>
-            {{#ifvalue type equals="tile-1"}}
-            <div class="image-tint"></div>
-            <div class="image-grad"></div>
-            {{/ifvalue}}
-            <img class="image" src="{{img}}">
+            <div class="text-part">
+              <h2 class="section">{{section}}</h2>
+              <h2 class="title">{{title}}</h2>
+              <h2 class="rubrik">{{rubric}}</h2>
+            </div>
+            <div class="image-part">
+              <div class="image-tint"></div>
+              <div class="image-grad"></div>
+              <img class="image" src="{{img}}">
+            </div>
           </div>
         </a>
       </li>

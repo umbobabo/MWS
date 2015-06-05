@@ -73,7 +73,7 @@ function initReveal(){
     } else {
       // Preloader is inherited by Widget base class
       me.addPreloader();
-      $.get( path + "?output=html&template=partials/theWorldIf/article&data=http://" +  me.config.feed.host + "/" + me.config.feed.articlePath + "/" + articleID + ".json" , function( html ) {
+      $.get( path + "?output=html&template=partials/theWorldIf/article&data=http://" +  me.config.feed.host + "/" + me.config.feed.articlePath + "/" + articleID , function( html ) {
       // Olad approach with client-side handlebars and data request
       //$.get("http://" +  me.config.feed.host + "/" + me.config.feed.articlePath + "/" + articleID + ".json", function( data ) {
         // Substitute inline element on the body

@@ -1,16 +1,9 @@
 var fs = require('fs'),
     http = require('http'),
     util = require('util'),
-    WIFconf = {
-      homeURL: 'TheWorldIf',
-      feed: {
-        host: 'localhost:3100',
-        landingPath: 'data/storytiles',
-        articlePath: 'data'
-      }
-    },
+    WIFconf = require('./config').config,
     aliasMapping,
-    inlineParser = require('../mnv_modules/inline_parser'),
+    inlineParser = require('../../mnv_modules/inline_parser'),
     me = this;
 
 exports.routes = function(req, res){
@@ -105,8 +98,6 @@ exports.storytiles = function (req, res) {
   }
 
   function outputPage(data, article){
-    // 'bower_components',
-    //hbs.partialsDir = ['mnv/mnv-cmp-masthead/js/tpl/handlebars', 'mnv/mnv-cmp-storytiles-reveal/js/tpl/handlebars'];
     hbs.partialsDir = ['bower_components','views'];
     //console.log(util.inspect(data, { showHidden: true, depth: null }));
     // TODO review and optimise this part
@@ -118,7 +109,7 @@ exports.storytiles = function (req, res) {
         landingPageUrl: '/' + WIFconf.homeURL,
         className: (article.id!==null) ? 'article' : 'landing',
         WIFconf: JSON.stringify(WIFconf),
-        // TODO Un-hardcode this part.
+        //"mnv-cmp-footer": footerData['mnv-cmp-footer'],
         "masthead":{
             "title": "The World If",
             "subtitle": "This is a subtitle"

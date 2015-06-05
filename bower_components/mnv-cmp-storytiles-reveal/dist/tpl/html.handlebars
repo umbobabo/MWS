@@ -5,17 +5,19 @@
   <div class="article-reveal-container">
     <ul>
       {{#each tiles}}
-      <li class="artical-reveal-tile {{type}} {{animate}}" data-id="{{id}}" id="tile{{id}}">
-        <a href="{{url}}">
+      <li class="artical-reveal-tile {{animate}}" data-id="{{id}}" id="tile{{id}}">
+        <a href="{{url}}" class="artical-reveal-tile-link">
           <div class="tile-content">
-            <h2 class="section">{{section}}</h2>
-            <h2 class="title">{{title}}</h2>
-            <h2 class="rubrik">{{rubric}}</h2>
-            {{#ifvalue type equals="tile-1"}}
-            <div class="image-tint"></div>
-            <div class="image-grad"></div>
-            {{/ifvalue}}
-            <img class="image" src="{{img}}">
+            <div class="text-part">
+              <h2 class="section">{{section}}</h2>
+              <h2 class="title">{{title}}</h2>
+              <h2 class="rubrik">{{rubric}}</h2>
+            </div>
+            <div class="image-part">
+              <div class="image-tint"></div>
+              <div class="image-grad"></div>
+              <img class="image" src="{{img}}">
+            </div>
           </div>
         </a>
       </li>
