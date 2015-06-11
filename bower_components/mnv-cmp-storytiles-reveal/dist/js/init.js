@@ -7,7 +7,7 @@ function initReveal(){
   tile = document.getElementsByClassName('artical-reveal-tile'),
   articleContainer = document.querySelector('.article-container'),
 
-  tileTarget =  document.querySelector( ".article-reveal-container ul li:last-child" );
+  tileTarget =  document.querySelector( ".article-reveal-container .artical-reveal-tile:last-child" );
   me.el = document.querySelector('.mnv-ec-storytilesreveal');
   me.config = JSON.parse($(me.el).attr('data-config'));
   me.pushStateUsed = false;

@@ -25,6 +25,7 @@ conf = {
 var env = process.env.NODE_ENV || 'development';
 //env = 'production';
 app.use('/libs', express.static(__dirname + '/libs'));
+app.use('/mnv', express.static(__dirname + '/mnv'));
 // if ('development' == env) {
 //   // Development only
 //   // In development map resources to minerva widget dev folder

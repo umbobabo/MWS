@@ -41,6 +41,7 @@ exports.storytiles = function (req, res) {
   var articleID = null,
   tilesDataSource = "http://" + WIFconf.feed.host + "/" + WIFconf.feed.landingPath,
   aliasMapping = {};
+  console.log(tilesDataSource);
   http.get( tilesDataSource , function(res) {
     // Buffer the body entirely for processing as a whole.
     var bodyChunks = [];

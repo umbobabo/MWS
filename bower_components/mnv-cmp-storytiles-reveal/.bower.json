@@ -29,11 +29,11 @@
     "mnv-shared": "*",
     "handlebars": "~3.0.3"
   },
-  "_release": "ae21fac66e",
+  "_release": "1183eafb4e",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "ae21fac66e5145416575ba07c2c9a837678b6a08"
+    "commit": "1183eafb4e1b30e166fc4d69e1cd475049d0e2a5"
   },
   "_source": "git://github.com/umbobabo/mnv-cmp-storytiles-reveal.git",
   "_target": "*",

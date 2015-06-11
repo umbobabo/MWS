@@ -3,9 +3,9 @@
   <!-- TODO The article partials have to be adde only on the SS version, not on the CS version -->
   <div class="article-container">{{>partials/theWorldIf/article}}</div>CCC
   <div class="article-reveal-container">
-    <ul>
+    <div class="article-list">
       {{#each tiles}}
-      <li class="artical-reveal-tile {{animate}}" data-id="{{id}}" id="tile{{id}}">
+      <div class="artical-reveal-tile {{animate}}" data-id="{{id}}" id="tile{{id}}">
         <a href="{{url}}" class="artical-reveal-tile-link">
           <div class="tile-content">
             <div class="text-part">
@@ -13,16 +13,16 @@
               <h2 class="title">{{title}}</h2>
               <h2 class="rubrik">{{rubric}}</h2>
             </div>
-            <div class="image-part">
-              <div class="image-tint"></div>
-              <div class="image-grad"></div>
-              <img class="image" src="{{img}}">
-            </div>
+          </div>
+          <div class="image-part">
+            <div class="image-tint"></div>
+            <div class="image-grad"></div>
+            <img class="image" src="{{img}}">
           </div>
         </a>
-      </li>
+      </div>
       {{/each}}
-    </ul>
+    </div class="article-list">
   </div>
 </div>
 

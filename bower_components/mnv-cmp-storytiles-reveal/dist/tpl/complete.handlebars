@@ -112,7 +112,7 @@ html, body {
   font-family: Neutra2-Medium; }
   .mnv-ec-storytilesreveal * {
     box-sizing: border-box; }
-  .mnv-ec-storytilesreveal ul, .mnv-ec-storytilesreveal li {
+  .mnv-ec-storytilesreveal .article-list, .mnv-ec-storytilesreveal li {
     list-style: none;
     margin: 0;
     padding: 0; }
@@ -150,7 +150,7 @@ html, body {
   overflow-y: scroll;
   overflow-x: hidden; }
 
-ul {
+.article-list {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -187,7 +187,9 @@ ul {
   .artical-reveal-tile .tile-content {
     max-width: 960px;
     margin: auto;
-    position: relative; }
+    position: relative;
+    width: 100%;
+    height: 100%; }
   .artical-reveal-tile .section, .artical-reveal-tile .title, .artical-reveal-tile .rubrik {
     pointer-events: none;
     z-index: 2;
@@ -230,21 +232,21 @@ ul {
 .image:hover {
   transform: scale(1.2, 1.2); }
 
-.article-reveal-container ul li:nth-child(1) {
+.article-reveal-container .article-list .artical-reveal-tile:nth-child(1) {
   position: relative;
   min-width: 100%; }
-  .article-reveal-container ul li:nth-child(1):before {
+  .article-reveal-container .article-list .artical-reveal-tile:nth-child(1):before {
     display: block;
     content: '';
     width: 100%;
     padding-top: 56.25%; }
-  .article-reveal-container ul li:nth-child(1) > .content {
+  .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) > .content {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0; }
-  .article-reveal-container ul li:nth-child(1) .rubrik, .article-reveal-container ul li:nth-child(1) .section {
+  .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .rubrik, .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .section {
     display: block; }
 
 .artical-reveal-tile {
@@ -286,9 +288,16 @@ ul {
     opacity: 0.8; }
 
 .artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10), .artical-reveal-tile:nth-of-type(11), .artical-reveal-tile:nth-of-type(12), .artical-reveal-tile:nth-of-type(13) {
-  min-width: 25%;
   border-right: 6px solid #000;
   position: relative; }
+  @media (max-width: 960px) {
+    .artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10), .artical-reveal-tile:nth-of-type(11), .artical-reveal-tile:nth-of-type(12), .artical-reveal-tile:nth-of-type(13) {
+      min-width: 25%; } }
+  @media (min-width: 959px) {
+    .artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10), .artical-reveal-tile:nth-of-type(11), .artical-reveal-tile:nth-of-type(12), .artical-reveal-tile:nth-of-type(13) {
+      width: 240px;
+      max-width: 240px;
+      min-width: initial !important; } }
   @media (max-width: 580px) {
     .artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10), .artical-reveal-tile:nth-of-type(11), .artical-reveal-tile:nth-of-type(12), .artical-reveal-tile:nth-of-type(13) {
       min-width: 50%; } }
@@ -379,13 +388,13 @@ ul {
 .artical-reveal-tile:nth-child(14) {
   -webkit-transition-delay: 2.8s; }
 
-.article-reveal-container ul li:nth-child(1) {
+.article-reveal-container .article-list .artical-reveal-tile:nth-child(1) {
   background-color: white; }
 
-.article-reveal-container ul li:nth-child(2) {
+.article-reveal-container .article-list .artical-reveal-tile:nth-child(2) {
   background-color: black; }
 
-.article-reveal-container ul li:nth-child(3) {
+.article-reveal-container .article-list .artical-reveal-tile:nth-child(3) {
   background-color: red; }
 
 .landing .artical-reveal-tile {
@@ -450,11 +459,6 @@ button {
 @media (min-width: 960px) {
   .artical-reveal-tile {
     max-height: 300px; } }
-@media (min-width: 960px) {
-  .artical-reveal-tile .image {
-    max-width: 960px;
-    right: 0;
-    left: auto; } }
 
 @media (max-width: 580px) {
   .rubrik {
@@ -472,9 +476,9 @@ button {
   <!-- TODO The article partials have to be adde only on the SS version, not on the CS version -->
   <div class="article-container">{{>partials/theWorldIf/article}}</div>CCC
   <div class="article-reveal-container">
-    <ul>
+    <div class="article-list">
       {{#each tiles}}
-      <li class="artical-reveal-tile {{animate}}" data-id="{{id}}" id="tile{{id}}">
+      <div class="artical-reveal-tile {{animate}}" data-id="{{id}}" id="tile{{id}}">
         <a href="{{url}}" class="artical-reveal-tile-link">
           <div class="tile-content">
             <div class="text-part">
@@ -482,16 +486,16 @@ button {
               <h2 class="title">{{title}}</h2>
               <h2 class="rubrik">{{rubric}}</h2>
             </div>
-            <div class="image-part">
-              <div class="image-tint"></div>
-              <div class="image-grad"></div>
-              <img class="image" src="{{img}}">
-            </div>
+          </div>
+          <div class="image-part">
+            <div class="image-tint"></div>
+            <div class="image-grad"></div>
+            <img class="image" src="{{img}}">
           </div>
         </a>
-      </li>
+      </div>
       {{/each}}
-    </ul>
+    </div class="article-list">
   </div>
 </div>
 
