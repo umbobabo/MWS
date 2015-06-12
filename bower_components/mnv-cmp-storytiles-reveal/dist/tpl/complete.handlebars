@@ -159,7 +159,7 @@ html, body {
   flex-direction: row; }
 
 .article-container {
-  max-width: 960px;
+  max-width: 1190px;
   height: 100%;
   width: 100%;
   margin: 0 auto;
@@ -173,7 +173,7 @@ html, body {
   text-align: center;
   flex: 1;
   background-color: black;
-  border-bottom: 4px solid #000;
+  border-bottom: 10px solid #000;
   opacity: 1;
   overflow: hidden; }
   .artical-reveal-tile a {
@@ -185,39 +185,58 @@ html, body {
     width: 100%;
     height: 100%; }
   .artical-reveal-tile .tile-content {
-    max-width: 960px;
+    max-width: 1190px;
     margin: auto;
     position: relative;
     width: 100%;
     height: 100%; }
+  .artical-reveal-tile .text-part {
+    padding: 30px;
+    position: absolute;
+    z-index: 2; }
   .artical-reveal-tile .section, .artical-reveal-tile .title, .artical-reveal-tile .rubrik {
     pointer-events: none;
     z-index: 2;
     font-size: 20px;
     color: #25E3D0;
-    position: absolute;
     text-transform: uppercase;
-    top: 20px;
-    left: 20px;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-    text-align: left; }
+    text-align: left;
+    margin: 0; }
     @media (max-width: 480px) {
       .artical-reveal-tile .section, .artical-reveal-tile .title, .artical-reveal-tile .rubrik {
         font-size: 20px; } }
+  .artical-reveal-tile .section {
+    font-size: 30px;
+    line-height: 20px;
+    margin-bottom: 5px; }
   .artical-reveal-tile .title {
     top: 45px;
-    font-size: 36px;
+    font-size: 48px;
+    line-height: 38px;
     font-family: Neutra2-Titling;
-    color: #fff; }
+    color: #fff;
+    margin-bottom: 30px; }
     @media (max-width: 480px) {
       .artical-reveal-tile .title {
         top: 40px;
         font-size: 30px; } }
+    @media (max-width: 961px) {
+      .artical-reveal-tile .title {
+        margin-bottom: 0;
+        font-size: 34px; } }
   .artical-reveal-tile .rubrik {
-    font-size: 20px;
+    font-size: 30px;
+    line-height: 30px;
     top: 90px;
     text-transform: initial;
     color: #fff; }
+    @media (max-width: 600px) {
+      .artical-reveal-tile .rubrik {
+        display: none; } }
+    @media (min-width: 961px) {
+      .artical-reveal-tile .rubrik {
+        max-width: 450px; } }
   .artical-reveal-tile .image {
     position: absolute;
     top: 0;
@@ -246,8 +265,36 @@ html, body {
     left: 0;
     right: 0;
     bottom: 0; }
-  .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .rubrik, .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .section {
-    display: block; }
+  .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .text-part {
+    bottom: 0; }
+    .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .text-part .rubrik {
+      display: block;
+      font-family: Neutra2-Titling;
+      font-size: 48px;
+      line-height: 38px; }
+      @media (min-width: 961px) {
+        .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .text-part .rubrik {
+          max-width: initial; } }
+      @media (max-width: 961px) {
+        .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .text-part .rubrik {
+          font-size: 32px;
+          line-height: 35px; } }
+    .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .text-part .section {
+      display: none; }
+    .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .text-part .title {
+      font-size: 50px;
+      line-height: 44px;
+      font-family: Neutra2-Medium;
+      margin-bottom: 12px; }
+      @media (max-width: 961px) {
+        .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .text-part .title {
+          font-size: 35px;
+          line-height: 35px; } }
+      @media (max-width: 568px) {
+        .article-reveal-container .article-list .artical-reveal-tile:nth-child(1) .text-part .title {
+          font-size: 28px;
+          line-height: 32px;
+          letter-spacing: 0.05px; } }
 
 .artical-reveal-tile {
   min-width: 100%;
@@ -286,18 +333,33 @@ html, body {
     width: 60%;
     height: 100%;
     opacity: 0.8; }
+  .artical-reveal-tile:nth-child(8) .section {
+    color: #e3120b; }
+  .artical-reveal-tile:nth-child(3) .section {
+    color: #07c5b2; }
+  .artical-reveal-tile:nth-child(2) .section {
+    color: #f5a816; }
 
 .artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10), .artical-reveal-tile:nth-of-type(11), .artical-reveal-tile:nth-of-type(12), .artical-reveal-tile:nth-of-type(13) {
   border-right: 6px solid #000;
   position: relative; }
-  @media (max-width: 960px) {
+  @media (max-width: 1190px) {
     .artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10), .artical-reveal-tile:nth-of-type(11), .artical-reveal-tile:nth-of-type(12), .artical-reveal-tile:nth-of-type(13) {
       min-width: 25%; } }
-  @media (min-width: 959px) {
-    .artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10), .artical-reveal-tile:nth-of-type(11), .artical-reveal-tile:nth-of-type(12), .artical-reveal-tile:nth-of-type(13) {
-      width: 240px;
-      max-width: 240px;
-      min-width: initial !important; } }
+  @media (min-width: 1189px) {
+    .artical-reveal-tile:nth-of-type(4) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(4).artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(4).artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(5) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(5).artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(5).artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(6) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(6).artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6).artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(7).artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(7).artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(10) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(10).artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(10).artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(11) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(11).artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(11).artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(12) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(12).artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(12).artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(13) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(13).artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(13).artical-reveal-tile:nth-of-type(6) {
+      width: 297.5px;
+      max-width: 297.5px;
+      min-width: initial !important;
+      max-height: 220px; }
+
+    .artical-reveal-tile:nth-of-type(4).artical-reveal-tile:nth-of-type(4) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(5).artical-reveal-tile:nth-of-type(4) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(6).artical-reveal-tile:nth-of-type(4) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(7).artical-reveal-tile:nth-of-type(4) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(10).artical-reveal-tile:nth-of-type(4) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(11).artical-reveal-tile:nth-of-type(4) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(12).artical-reveal-tile:nth-of-type(4) .artical-reveal-tile-link, .artical-reveal-tile:nth-of-type(13).artical-reveal-tile:nth-of-type(4) .artical-reveal-tile-link {
+      left: auto !important; }
+
+    .artical-reveal-tile:nth-of-type(4).artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(4).artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(5).artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5).artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(6).artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(6).artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(7).artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(7).artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10).artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(10).artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(11).artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(11).artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(12).artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(12).artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(13).artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(13).artical-reveal-tile:nth-of-type(7) {
+      max-width: 100%;
+      min-width: initial !important;
+      max-height: 220px; } }
   @media (max-width: 580px) {
     .artical-reveal-tile:nth-of-type(4), .artical-reveal-tile:nth-of-type(5), .artical-reveal-tile:nth-of-type(6), .artical-reveal-tile:nth-of-type(7), .artical-reveal-tile:nth-of-type(10), .artical-reveal-tile:nth-of-type(11), .artical-reveal-tile:nth-of-type(12), .artical-reveal-tile:nth-of-type(13) {
       min-width: 50%; } }
@@ -320,6 +382,14 @@ html, body {
         font-size: 16px; } }
   .artical-reveal-tile:nth-of-type(4) .section, .artical-reveal-tile:nth-of-type(4) .rubrik, .artical-reveal-tile:nth-of-type(5) .section, .artical-reveal-tile:nth-of-type(5) .rubrik, .artical-reveal-tile:nth-of-type(6) .section, .artical-reveal-tile:nth-of-type(6) .rubrik, .artical-reveal-tile:nth-of-type(7) .section, .artical-reveal-tile:nth-of-type(7) .rubrik, .artical-reveal-tile:nth-of-type(10) .section, .artical-reveal-tile:nth-of-type(10) .rubrik, .artical-reveal-tile:nth-of-type(11) .section, .artical-reveal-tile:nth-of-type(11) .rubrik, .artical-reveal-tile:nth-of-type(12) .section, .artical-reveal-tile:nth-of-type(12) .rubrik, .artical-reveal-tile:nth-of-type(13) .section, .artical-reveal-tile:nth-of-type(13) .rubrik {
     display: none; }
+  .artical-reveal-tile:nth-of-type(4) .text-part, .artical-reveal-tile:nth-of-type(5) .text-part, .artical-reveal-tile:nth-of-type(6) .text-part, .artical-reveal-tile:nth-of-type(7) .text-part, .artical-reveal-tile:nth-of-type(10) .text-part, .artical-reveal-tile:nth-of-type(11) .text-part, .artical-reveal-tile:nth-of-type(12) .text-part, .artical-reveal-tile:nth-of-type(13) .text-part {
+    position: absolute;
+    bottom: 0;
+    width: 100%; }
+    .artical-reveal-tile:nth-of-type(4) .text-part .title, .artical-reveal-tile:nth-of-type(5) .text-part .title, .artical-reveal-tile:nth-of-type(6) .text-part .title, .artical-reveal-tile:nth-of-type(7) .text-part .title, .artical-reveal-tile:nth-of-type(10) .text-part .title, .artical-reveal-tile:nth-of-type(11) .text-part .title, .artical-reveal-tile:nth-of-type(12) .text-part .title, .artical-reveal-tile:nth-of-type(13) .text-part .title {
+      margin: 0;
+      line-height: 24px;
+      font-size: 28px; }
   .artical-reveal-tile:nth-of-type(4):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(4):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(5):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(6):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(7):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(10):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(11):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(12):nth-of-type(13) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(4) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(5) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(6) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(7) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(10) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(11) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(12) .image-tint, .artical-reveal-tile:nth-of-type(13):nth-of-type(13) .image-tint {
     pointer-events: none;
     position: absolute;
@@ -453,23 +523,12 @@ button {
   cursor: pointer;
   background-color: #fff; }
 
-@media (min-width: 960px) {
+@media (min-width: 1190px) {
   .artical-reveal-tile:nth-child(1) {
     max-height: 600px; } }
-@media (min-width: 960px) {
+@media (min-width: 1190px) {
   .artical-reveal-tile {
-    max-height: 300px; } }
-
-@media (max-width: 580px) {
-  .rubrik {
-    display: none; }
-
-  .text-part * {
-    position: relative !important;
-    top: auto !important; }
-
-  .artical-reveal-tile-link {
-    position: relative !important; } }
+    max-height: 400px; } }
 </style>
 <div class="main-container">
   <a class="close-btn" href="{{landingPageUrl}}">X</a>
@@ -483,7 +542,7 @@ button {
           <div class="tile-content">
             <div class="text-part">
               <h2 class="section">{{section}}</h2>
-              <h2 class="title">{{title}}</h2>
+              <h2 class="title">{{{title}}}</h2>
               <h2 class="rubrik">{{rubric}}</h2>
             </div>
           </div>

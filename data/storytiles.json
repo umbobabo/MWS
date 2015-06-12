@@ -11,8 +11,8 @@
   "tiles": [
     {
       "section": "Cover",
-      "title": "This is the cover",
-      "rubric": "Blah blah blah blah...",
+      "title": "Politics<br/>Business & Finance<br/>Science & technology",
+      "rubric": "For the future curious",
       "img" : "/libs/landing/images/landing_01.jpg",
       "id": 9,
       "page": {
@@ -31,7 +31,7 @@
     },
     {
       "section": "Business and finance",
-      "title": "tile03 very long title.. gfjsdlk gfjlkgdf ....",
+      "title": "tile03 very long title gfjsdlk gfjlkgdf gfsjkfljgdf",
       "rubric": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
       "img" : "/libs/landing/images/landing_03.jpg",
       "id": 10,
