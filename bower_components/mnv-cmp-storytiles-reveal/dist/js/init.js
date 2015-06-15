@@ -4,10 +4,10 @@ function initReveal(){
   me = this,
   revealContainer = document.getElementsByClassName('article-reveal-container'),
   close = document.querySelector('.close-btn'),
-  tile = document.getElementsByClassName('artical-reveal-tile'),
+  tile = document.getElementsByClassName('article-reveal-tile'),
   articleContainer = document.querySelector('.article-container'),
 
-  tileTarget =  document.querySelector( ".article-reveal-container .artical-reveal-tile:last-child" );
+  tileTarget =  document.querySelector( ".article-reveal-container .article-reveal-tile:last-child" );
   me.el = document.querySelector('.mnv-ec-storytilesreveal');
   me.config = JSON.parse($(me.el).attr('data-config'));
   me.pushStateUsed = false;
@@ -21,7 +21,7 @@ function initReveal(){
   preventDefaultClicks();
 
   function preventDefaultClicks(){
-    $('.artical-reveal-tile a, .close-btn').on('click', function(e){
+    $('.article-reveal-tile a, .close-btn').on('click', function(e){
       e.preventDefault();
     });
   }
@@ -29,7 +29,8 @@ function initReveal(){
   function detectTheEnd(e) {
     if ($(me.el).hasClass('landing')) {
     //   if(articleActive !== true){
-        emptyArticle();
+      emptyArticle();
+      $(me.el).removeClass('animation-start').addClass('animation-end');
     //   }
     }
   }
@@ -42,16 +43,21 @@ function initReveal(){
     me.swapClass(true);
   }
 
-  $('.artical-reveal-tile').bind('click', function() {
+  $('.article-reveal-tile').bind('click', function() {
     // TODO improve this part
     var id = $(this).attr('data-id'), path = $('a', this).attr('href');
     me.showArticle(id, path);
+    $(me.el).removeClass('animation-end').addClass('animation-start');
   });
 
   // Manage history changes
   window.onpopstate = function(event) {
     me.pushStateUsed = true;
-    if(event.state.hasOwnProperty("articleID")){
+    if(!event.state){
+       me.goLanding();
+       return false;
+    }
+    if(event.state.hasOwnProperty("articleID") && event.state){
       me.showArticle(event.state.articleID, event.state.articlePath);
     } else {
       me.goLanding();
@@ -87,7 +93,7 @@ function initReveal(){
       .done(function(data) {
         // TODO complete this wit page information and do it DRY
         if(!me.pushStateUsed){
-          history.pushState({ articleID: articleID, articlePath: path },"Replace this with the title page", path);
+          customHistory.pushState({ articleID: articleID, articlePath: path },"Replace this with the title page", path);
         }
       });
     }
@@ -97,12 +103,12 @@ function initReveal(){
     articleContainer.innerHTML = '';
     if(!me.pushStateUsed){
       // TODO Replace title with page information
-      history.pushState({},"Replace this with the title page", "/" + me.config.homeURL);
+      customHistory.pushState({},"Replace this with the title page", "/" + me.config.homeURL);
     }
   }
 
   me.goLanding = function(){
-    history.pushState({},"Replace this with the title page", "/" + me.config.homeURL);
+    customHistory.pushState({},"Replace this with the title page", "/" + me.config.homeURL);
     me.swapClass(false);
   }
 
@@ -115,6 +121,14 @@ function initReveal(){
 // Add inheritance to get the widget preloader
 initReveal.prototype = new Widget();
 
+var customHistory = {
+  pushState: function(a,b,c){
+    if(history && (typeof history.pushState === 'function') ){
+      history.pushState(a,b,c);
+    }
+  }
+}
+
 docReady(function(){
   var reveal = new initReveal();
   // Show article on final URL request
@@ -126,6 +140,6 @@ docReady(function(){
     }, 1500);
   } else {
     // TODO Write title from backend configuration
-    history.pushState({},"Replace this with the title page", articlePath);
+    customHistory.pushState({},"Replace this with the title page", articlePath);
   }
 });

@@ -5,4 +5,4 @@ logs
 *.sublime-workspace
 npm-debug.log
 /bundles
-bower_components/
+/bower_components
