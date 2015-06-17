@@ -11,14 +11,13 @@ function attributesSplitter(attributes){
 };
 
 exports.inlineParser = function(){
-  // TODO Optimize this RE to catch inline tag that at least contains 1 instance of |
-
   // Extract all the content inside square braket
   return me;
 }
 
 exports.parseHTML = function(str){
   parsedStr = str;
+  // TODO Optimize this RE to catch inline tag that at least contains 1 instance of |
   re = /\[(.*?)[|](.*?)\]/gi;
   while ((m = re.exec(str)) !== null) {
     if (m.index === re.lastIndex) {
@@ -55,7 +54,9 @@ exports.minerva = function(el){
 }
 
 exports.image = function(el){
-  return '<img ' + el.attributes.join(' ') + ' />';
+  // We wrap the image on a span tag so we can use pseudo :after and :before to manipulate the DOM directly via CSS
+  var attrTemp = attributesSplitter(el.attributes);
+  return '<span title="' + attrTemp['title'] + '"><img ' + el.attributes.join(' ') + ' /></span>';
 }
 // Brightcove video
 // [brightcove-player|iid=86839|vid=yryryruyr|linkBaseURL=|autoStart=yes|pid=' + attr.pid + '|key=AQ~~,AAABDH-R__E~,dB4S9tmhdOo20g03jDsDgNBGDcclfHEU|cssclass=|width=595|height=400]

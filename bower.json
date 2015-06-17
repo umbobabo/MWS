@@ -21,6 +21,7 @@
     "mnv-cmp-masthead": "*",
     "mnv-cmp-storytiles-reveal": "*",
     "modernizer": "~2.8.2",
-    "mnv-shared": "*"
+    "mnv-shared": "*",
+    "ftscroller": "~0.6.0"
   }
 }

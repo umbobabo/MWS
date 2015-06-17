@@ -87,10 +87,13 @@ exports.storytiles = function (req, res) {
           bodyChunks.push(chunk);
         })
         .on('end', function() {
-          var body = Buffer.concat(bodyChunks), data = JSON.parse(body);
+          var body = Buffer.concat(bodyChunks), data = JSON.parse(body), art = {
+            tiles: articles
+          };
           //console.log(util.inspect(data, { showHidden: true, depth: null }));
           data.article.body = inlineParser.parseHTML(data.article.body);
-          outputPage(articles, data.article);
+          console.log(util.inspect(data, { showHidden: true, depth: null }));
+          outputPage(art , data.article);
         })
       }).on('error', function(e) {
         // TODO manage errors
@@ -108,7 +111,7 @@ exports.storytiles = function (req, res) {
         article: article,
         tiles: data.tiles,
         landingPageUrl: '/' + WIFconf.homeURL,
-        className: (article.id!==null) ? 'article' : 'landing',
+        className: (article.id!==null) ? 'article' : 'landing animation-end',
         WIFconf: JSON.stringify(WIFconf),
         //"mnv-cmp-footer": footerData['mnv-cmp-footer'],
         "masthead":{
