@@ -1,4 +1,40 @@
-<img src="{{article.image}}" />
-{{article.flyTitle}}
-{{article.rubric}}
-{{{article.body}}}
+<div class="article-container-inner">
+<!-- <div class="grid"></div> -->
+<div class="section group">
+  <div class="span_12 article-image-container">
+  <div class="article-image-container-content">
+    <div class="article-title-container">
+      <div class="article-section margin_1">{{article.section}}</div>
+      <div class="article-title margin_1">{{article.title}}</div>
+    </div>
+    <img src="{{article.image-small}}" srcset="{{article.image-large}} 1000w, {{article.image-small}} 640w" class="article-image" /></div>
+  </div>
+</div>
+<div class="section group">
+  <div class="span_10 article-rubric margin_1">{{article.rubric}}</div>
+</div>
+<div class="section group">
+  <div class="span_10 article-body margin_1">{{{article.body}}}</div>
+</div>
+
+<div class="section group">
+  <div class="span_12 more-stories-container">blah
+    <nav class="more-stories-nav">
+      <ul>
+        <li>Politics</li>
+        <li>Business & Finance</li>
+        <li>Science & Technology</li>
+        <li>History</li>
+      </ul>
+    </nav>
+    <div>
+      <ul>
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+        <li>04</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>

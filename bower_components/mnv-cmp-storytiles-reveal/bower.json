@@ -29,5 +29,8 @@
   "devDependencies": {
     "mnv-shared": "*",
     "handlebars": "~3.0.3"
+  },
+  "dependencies": {
+    "ftscroller": "~0.6.0"
   }
 }
