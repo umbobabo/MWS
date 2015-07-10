@@ -11,7 +11,7 @@
 exports.config = {
   homeURL: 'TheWorldIf',
   feed: {
-    host: '192.168.112.173:3100',
+    host: 'localhost:3100',
     landingPath: 'data/storytiles',
     articlePath: 'data'
   }
